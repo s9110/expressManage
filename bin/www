@@ -7,6 +7,9 @@
 var app = require('../app');
 var debug = require('debug')('expressManage:server');
 var http = require('http');
+var mongoose = require('mongoose');
+
+var database = require('../bin/db');
 
 /**
  * Get port from environment and store in Express.
@@ -14,6 +17,11 @@ var http = require('http');
 
 var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
+
+/**
+ * connect to mongoDB database on modulus.io
+ */
+mongoose.connect(database.url);
 
 /**
  * Create HTTP server.
@@ -82,5 +90,7 @@ function onError(error) {
 function onListening() {
     var addr = server.address();
     var bind = typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr.port;
+
+    console.log('Listening on ' + bind);
     debug('Listening on ' + bind);
 }
