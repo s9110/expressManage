@@ -8,6 +8,8 @@ var bodyParser = require('body-parser');
 // MODELS to be used with ROUTES
 var index = require('./routes/index');
 var users = require('./routes/users');
+var newIndex = require('./routes/newIndex');
+
 
 var app = express();
 
@@ -28,6 +30,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 // ROUTES and MODELS to be used on hitting these routes
 app.use('/', index);
 app.use('/users', users);
+app.use('/i', newIndex);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
