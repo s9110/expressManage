@@ -6,7 +6,7 @@ router.get('/', function(req, res, next) {
     res.render('newIndex', {
         title: 'New Index Page',
         username: 'Fazle Abbas',
-        messageFrom: 'Sumitsing Ingle'
+        messageFrom: 'Divya Ugale'
     });
 });
 
