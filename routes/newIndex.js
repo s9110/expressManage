@@ -5,7 +5,8 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
     res.render('newIndex', {
         title: 'New Index Page',
-        name: 'Fazle Abbas'
+        username: 'Fazle Abbas',
+        messageFrom: 'Sumitsing Ingle'
     });
 });
 

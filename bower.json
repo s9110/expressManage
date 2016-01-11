@@ -1,0 +1,23 @@
+{
+  "name": "expressManage",
+  "description": "Front-end dependencies for expressManage app",
+  "main": "",
+  "authors": [
+    "Fazle Abbas"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/abbas133/expressManage",
+  "moduleType": [],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.6",
+    "font-awesome": "~4.5.0"
+  }
+}
