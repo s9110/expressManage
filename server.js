@@ -8,7 +8,7 @@ var bodyParser = require('body-parser');
 // MODELS to be used with ROUTES
 var index = require('./routes/index');
 var users = require('./routes/users');
-var underConstruction = require('./routes/underConstruction');
+var products = require('./routes/products');
 
 var app = express();
 
@@ -30,7 +30,7 @@ app.use(express.static(path.join(__dirname, 'views')));
 // ROUTES and MODELS to be used on hitting these routes
 app.use('/', index);
 app.use('/users', users);
-// app.use('/underconstruction', underConstruction);
+app.use('/api/product', products);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
