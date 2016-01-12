@@ -5,6 +5,9 @@
     <title>
         <%= title %>
     </title>
+
+    <base href="/">
+
     <!-- this one was originally present -->
     <!-- <link href='/stylesheets/style.css' rel='stylesheet' /> -->
 
@@ -19,6 +22,17 @@
     <script src="/libs/jquery/dist/jquery.js"></script>
     <!-- Bootstrap js  -->
     <script src="/libs/bootstrap/dist/js/bootstrap.js"></script>
+    <!-- Angular js  -->
+    <script src="/libs/angular/angular.js"></script>
+    <!-- Angular-route js -->
+    <script src="/libs/angular-route/angular-route.js"></script>
+
+    <!-- ANGULAR CUSTOM -->
+    <script src="/javascripts/controllers/expressManageCtrl.js"></script>
+    <script src="/javascripts/controllers/underConstructionCtrl.js"></script>
+    <!-- <script src="/javascripts/services/productService.js"></script> -->
+    <script src="/javascripts/appRoutes.js"></script>
+    <script src="/javascripts/app.js"></script>
 </head>
 
 <body ng-app="manageExpress">
@@ -150,6 +164,7 @@
         </nav>
 
         <!-- Partials to be loaded -->
+        <!-- ANGULAR DYNAMIC CONTENT -->
         <div id="page-wrapper" ng-view></div>
 
     </div>

@@ -25,11 +25,12 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'views')));
 
 // ROUTES and MODELS to be used on hitting these routes
 app.use('/', index);
 app.use('/users', users);
-app.use('/underconstruction', underConstruction);
+// app.use('/underconstruction', underConstruction);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
