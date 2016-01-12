@@ -1,21 +1,34 @@
-angular.module('productService', []).factory('Product', ['$http', function($http) {
+angular.module('productService', [])
 
-    return {
-        // call to get all nerds
-        get: function() {
-            return $http.get('/api/nerds');
-        },
+// each function returns a promise object
+.factory('productFactory', ['$http', function($http) {
+    var productFactory = {};
 
-        // these will work when more API routes are defined on the Node side of things
-        // call to POST and create a new nerd
-        create: function(nerdData) {
-            return $http.post('/api/nerds', nerdData);
-        },
-
-        // call to DELETE a nerd
-        delete: function(id) {
-            return $http.delete('/api/nerds/' + id);
-        }
+    productFactory.create = function(product) {
+        console.log('product : ', product);
+        return $http.get('/api/product', product);
     }
 
-}]);
+    return productFactory;
+
+}]
+);
+
+
+// angular.module('todoService', [])
+//
+// 	// super simple service
+// 	// each function returns a promise object
+// 	.factory('Todos', ['$http',function($http) {
+// 		return {
+// 			get : function() {
+// 				return $http.get('/api/todos');
+// 			},
+// 			create : function(todoData) {
+// 				return $http.post('/api/todos', todoData);
+// 			},
+// 			delete : function(id) {
+// 				return $http.delete('/api/todos/' + id);
+// 			}
+// 		}
+// 	}]);

@@ -30,7 +30,8 @@
     <!-- ANGULAR CUSTOM -->
     <script src="/javascripts/controllers/expressManageCtrl.js"></script>
     <script src="/javascripts/controllers/underConstructionCtrl.js"></script>
-    <!-- <script src="/javascripts/services/productService.js"></script> -->
+    <script src="/javascripts/controllers/addProductCtrl.js"></script>
+    <script src="/javascripts/services/productService.js"></script>
     <script src="/javascripts/appRoutes.js"></script>
     <script src="/javascripts/app.js"></script>
 </head>
@@ -51,12 +52,12 @@
                     <span class="icon-bar"></span>
                 </button>
                 <!-- #TODO: add href="index.html" -->
-                <a href="/" class="navbar-brand">My Dashboard</a>
+                <a class="navbar-brand">My Dashboard</a>
             </div>
 
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
-                <li class="dropdown">
+                <!-- <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-envelope"></i>
                         <b class="caret"></b>
@@ -102,7 +103,7 @@
                             <a href="#">View All</a>
                         </li>
                     </ul>
-                </li>
+                </li> -->
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-user"></i>
@@ -115,11 +116,11 @@
                                 <i class="fa fa-fw fa-user"></i> Profile
                             </a>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a href="#">
                                 <i class="fa fa-fw fa-envelope"></i> Inbox
                             </a>
-                        </li>
+                        </li> -->
                         <li>
                             <a href="#">
                                 <i class="fa fa-fw fa-gear"></i> Settings
@@ -137,14 +138,14 @@
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
-                    <li class="active">
+                    <li>
                         <a href="/"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                     </li>
                     <li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-dropbox"></i> Products <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo" class="collapse">
                             <li>
-                                <a href="/underconstruction"><i class="fa fa-fw fa-plus"></i> Add Product</a>
+                                <a href="/addproduct"><i class="fa fa-fw fa-plus"></i> Add Product</a>
                             </li>
                             <li>
                                 <a href="/underconstruction"><i class="fa fa-fw fa-search-plus"></i> View Products</a>
@@ -160,7 +161,7 @@
                 </ul>
             </div>
 
-        <!-- /.navbar-collapse -->
+            <!-- /.navbar-collapse -->
         </nav>
 
         <!-- Partials to be loaded -->

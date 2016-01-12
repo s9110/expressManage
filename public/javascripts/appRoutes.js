@@ -1,9 +1,11 @@
-angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+angular.module('appRoutes', ['productModule'])
+
+.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
 
     $routeProvider
 
     // home page
-    .when('/', {
+        .when('/', {
         templateUrl: 'partials/dashboard.html',
         controller: 'ExpressManageController'
     })
@@ -12,6 +14,12 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
     .when('/underconstruction', {
         templateUrl: 'partials/underConstruction.html',
         controller: 'underConstructionController'
+    })
+
+    // Add Product
+    .when('/addproduct', {
+        templateUrl: 'partials/addProduct.html',
+        controller: 'addProductController'
     })
 
     // default redirection
