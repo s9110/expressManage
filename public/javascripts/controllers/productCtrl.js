@@ -5,6 +5,12 @@ angular.module('productModule', ['productService'])
         $scope.product = {};
         $scope.products = [];
         $scope.loading = false;
+        $scope.success = false;
+        $scope.successProduct = {
+            "name": "Product title",
+            "ratePerMonth": "0.00",
+            "containerType": "Box"
+        };
 
         $scope.addProduct = function() {
             $scope.loading = true;
@@ -13,6 +19,8 @@ angular.module('productModule', ['productService'])
 
             .success(function(data) {
                 $scope.loading = false;
+                $scope.success = true;
+                $scope.successProduct = data;
                 $scope.product = {};
             })
         };
