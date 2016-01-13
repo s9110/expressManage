@@ -4,8 +4,11 @@ angular.module('productService', [])
 .factory('productFactory', ['$http', function($http) {
     var productFactory = {};
 
+    productFactory.get = function () {
+        return $http.get('/api/product');
+    }
+
     productFactory.create = function(product) {
-        console.log('product : ', product);
         return $http.post('/api/product', product);
     }
 

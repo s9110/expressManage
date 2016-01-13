@@ -19,7 +19,13 @@ angular.module('appRoutes', ['productModule'])
     // Add Product
     .when('/addproduct', {
         templateUrl: 'partials/addProduct.html',
-        controller: 'addProductController'
+        controller: 'productController'
+    })
+
+    // View Products
+    .when('/viewproducts', {
+        templateUrl: 'partials/viewProducts.html',
+        controller: 'productController'
     })
 
     // default redirection
