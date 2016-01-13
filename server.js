@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var methodOverride = require('method-override');
 
 // MODELS to be used with ROUTES
 var index = require('./routes/index');
@@ -24,6 +25,13 @@ app.use(bodyParser.urlencoded({
     extended: false
 }));
 app.use(cookieParser());
+// parse application/vnd.api+json as json
+app.use(bodyParser.json({
+    type: 'application/vnd.api+json'
+}));
+// override with the X-HTTP-Method-Override header in the request
+app.use(methodOverride('X-HTTP-Method-Override'));
+
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'views')));
 

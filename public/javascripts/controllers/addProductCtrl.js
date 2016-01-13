@@ -1,11 +1,15 @@
 angular.module('productModule', ['productService'])
 
-.controller('addProductController', ['$scope', 'productFactory',
-    function($scope, productFactory) {
+.controller('addProductController', ['$scope', '$http', 'productFactory',
+    function($scope, $http, productFactory) {
         $scope.product = {};
 
         $scope.addProduct = function() {
-            productFactory.create($scope.product);
+            productFactory.create($scope.product)
+
+                .success(function(data) {
+                    $scope.product.name = 'successful';
+                })
         };
 
     }
