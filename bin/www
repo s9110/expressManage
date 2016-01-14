@@ -4,12 +4,12 @@
  * Module dependencies.
  */
 
-var app = require('../app');
+var app = require('../server');
 var debug = require('debug')('expressManage:server');
 var http = require('http');
-var mongoose = require('mongoose');
-
-var database = require('../bin/db');
+// var mongoose = require('mongoose');
+//
+// var database = require('../bin/db');
 
 /**
  * Get port from environment and store in Express.
@@ -21,7 +21,7 @@ app.set('port', port);
 /**
  * connect to mongoDB database on modulus.io
  */
-mongoose.connect(database.url);
+// mongoose.connect(database.url);
 
 /**
  * Create HTTP server.
