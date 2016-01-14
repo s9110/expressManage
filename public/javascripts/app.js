@@ -3,5 +3,6 @@ angular.module('manageExpress', [
     'appRoutes',
     'expressManageCtrl',
     'underConstructionCtrl',
-    'productModule'
+    'productModule',
+    'customerModule'
 ]);

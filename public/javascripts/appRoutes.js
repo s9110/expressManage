@@ -28,6 +28,18 @@ angular.module('appRoutes', ['productModule'])
         controller: 'productController'
     })
 
+    // Add Customer
+    .when('/addcustomer', {
+        templateUrl: 'partials/addCustomer.html',
+        controller: 'customerController'
+    })
+
+    // View Customers
+    .when('/viewcustomers', {
+        templateUrl: 'partials/viewCustomers.html',
+        controller: 'customerController'
+    })
+
     // default redirection
     .otherwise({
         redirectTo: '/underconstruction'

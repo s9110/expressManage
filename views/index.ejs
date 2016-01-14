@@ -34,8 +34,13 @@
     <!-- ANGULAR CUSTOM -->
     <script src="/javascripts/controllers/expressManageCtrl.js"></script>
     <script src="/javascripts/controllers/underConstructionCtrl.js"></script>
+
     <script src="/javascripts/controllers/productCtrl.js"></script>
     <script src="/javascripts/services/productService.js"></script>
+
+    <script src="/javascripts/controllers/customerCtrl.js"></script>
+    <script src="/javascripts/services/customerService.js"></script>
+
     <script src="/javascripts/appRoutes.js"></script>
     <script src="/javascripts/app.js"></script>
 
@@ -58,8 +63,8 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <!-- #TODO: add href="index.html" -->
-                <a class="navbar-brand">My Dashboard</a>
+
+                <a class="navbar-brand">Sona Cold Storage</a>
             </div>
 
             <!-- Top Menu Items -->
@@ -145,12 +150,14 @@
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
+
                     <li>
                         <a href="/"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                     </li>
+
                     <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-dropbox"></i> Products <i class="fa fa-fw fa-caret-down"></i></a>
-                        <ul id="demo" class="collapse">
+                        <a href="javascript:;" data-toggle="collapse" data-target="#product"><i class="fa fa-fw fa-cubes"></i> Products <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="product" class="collapse">
                             <li>
                                 <a href="/addproduct"><i class="fa fa-fw fa-plus"></i> Add Product</a>
                             </li>
@@ -159,6 +166,19 @@
                             </li>
                         </ul>
                     </li>
+
+                    <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#customer"><i class="fa fa-fw fa-users"></i> Customers <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="customer" class="collapse">
+                            <li>
+                                <a href="/addcustomer"><i class="fa fa-fw fa-plus"></i> Add Customer</a>
+                            </li>
+                            <li>
+                                <a href="/viewcustomers"><i class="fa fa-fw fa-search-plus"></i> View Customers</a>
+                            </li>
+                        </ul>
+                    </li>
+
                     <!-- <li>
                         <a href="charts.html"><i class="fa fa-fw fa-bar-chart-o"></i> Charts</a>
                     </li>

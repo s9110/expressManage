@@ -10,6 +10,7 @@ var methodOverride = require('method-override');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var products = require('./routes/products');
+var customers = require('./routes/customers');
 
 var app = express();
 
@@ -39,6 +40,7 @@ app.use(express.static(path.join(__dirname, 'views')));
 app.use('/', index);
 app.use('/users', users);
 app.use('/api/product', products);
+app.use('/api/customer', customers);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -70,7 +72,6 @@ app.use(function(err, req, res, next) {
         error: {}
     });
 });
-
 
 
 
