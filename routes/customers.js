@@ -16,7 +16,7 @@ router.get('/', function(req, res) {
     });
 });
 
-// Add customers to db
+// Add customer to db
 router.post('/', function(req, res) {
     var collection = database.get('customers');
     collection.insert({
@@ -28,7 +28,7 @@ router.post('/', function(req, res) {
         city: req.body.city,
         mobile: req.body.mobile,
         landline: req.body.landline,
-    }, function(err, customers) {
+    }, function(err, customer) {
         if (err) throw err;
 
         res.json(customer);

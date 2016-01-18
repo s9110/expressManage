@@ -37,7 +37,7 @@
     <div class="row" ng-show="success">
         <div class="panel panel-success">
             <div class="panel-heading">
-                <button type="button" class="close close-new-saved-product pull-right" aria-label="Close" onClick="hideNewProductPanel();">
+                <button type="button" class="close close-new-saved pull-right" aria-label="Close" onClick="hideSuccessSavePanel();">
                     <span aria-hidden="true">&times;</span>
                 </button>
                 <h3 class="panel-title">{{ successProduct.name }}</h3>
@@ -66,7 +66,7 @@
     </div>
 
     <p class="text-center" ng-show="loading">
-        <span class="fa fa-spinner fa-spin fa-3x"></span>
+        <span class="fa fa-spinner fa-pulse fa-3x"></span>
     </p>
 
 </div>
