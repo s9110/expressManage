@@ -1,4 +1,4 @@
-var hideNewProductPanel = function() {
-    console.log('to hide product panel');
-    $(".close-new-saved-product").closest(".panel").hide();
+var hideSuccessSavePanel = function() {
+    console.log('to hide success save panel');
+    $(".close-new-saved").closest(".panel").hide();
 }

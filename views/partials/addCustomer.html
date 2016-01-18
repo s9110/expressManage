@@ -56,36 +56,46 @@
 
     <br/>
 
-    <!-- <div class="row" ng-show="success">
+    <div class="row" ng-show="success">
         <div class="panel panel-success">
             <div class="panel-heading">
-                <button type="button" class="close close-new-saved-product pull-right" aria-label="Close" onClick="hideNewProductPanel();">
+                <button type="button" class="close close-new-saved pull-right" aria-label="Close" onClick="hideSuccessSavePanel();">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <h3 class="panel-title">{{ successProduct.name }}</h3>
+                <h3 class="panel-title">{{ successCustomer.firstName }}  {{ successCustomer.lastName }}</h3>
             </div>
             <div class="panel-body">
                 <div class="table-responsive">
                     <table class="table table-bordered table-hover table-striped table-responsive" ng-hide="loading">
                         <thead>
                             <tr>
-                                <th>Name</th>
-                                <th>Rate Per Month</th>
-                                <th>Container Type</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Firm</th>
+                                <th>Address</th>
+                                <th>Landmark</th>
+                                <th>City</th>
+                                <th>Mobile Number</th>
+                                <th>Landline</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>{{ successProduct.name }}</td>
-                                <td>{{ successProduct.ratePerMonth }}</td>
-                                <td>{{ successProduct.containerType }}</td>
+                                <td>{{ successCustomer.firmName }}</td>
+                                <td>{{ successCustomer.firstName }}</td>
+                                <td>{{ successCustomer.lastName }}</td>
+                                <td>{{ successCustomer.address }}</td>
+                                <td>{{ successCustomer.landmark }}</td>
+                                <td>{{ successCustomer.city }}</td>
+                                <td>{{ successCustomer.mobile }}</td>
+                                <td>{{ successCustomer.landline }}</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
-    </div> -->
+    </div>
 
     <p class="text-center" ng-show="loading">
         <span class="fa fa-spinner fa-pulse fa-3x"></span>
