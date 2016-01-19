@@ -23,10 +23,10 @@ productModule.controller('GetProductsCtrl', ['$scope', '$http', 'productFactory'
                     $scope.products = data;
                 })
 
-                // More error handling code to be added
-                // .error(function(data) {
-                //     $scope.loading = false;
-                // })
+            // More error handling code to be added
+            // .error(function(data) {
+            //     $scope.loading = false;
+            // })
         }
 
         // Call $scope.getProducts()
@@ -62,33 +62,74 @@ productModule.controller('AddProductCtrl', ['$scope', '$http', 'productFactory',
                     $scope.product = {};
                 })
 
-                // More error handling code to be added
-                // .error(function(data) {
-                //     $scope.loading = false;
-                // })
+            // More error handling code to be added
+            // .error(function(data) {
+            //     $scope.loading = false;
+            // })
         }
 
     }
 ]);
 
-productModule.controller('EditProductCtrl', ['$scope', '$resource', '$location', '$routeParams',
-    function($scope, $resource, $location, $routeParams) {
+productModule.controller('EditProductCtrl', ['$scope', '$routeParams', 'productFactory',
+    function($scope, $routeParams, productFactory) {
         console.log('..EditProductCtrl');
+        console.log('..EditProductCtrl -> $routeParams.id: ' + $routeParams.id);
 
-        var Products = $resource('/api/product/:id', { id: '@_id' }, {
-            update: { method: 'PUT' }
-        });
+        $scope.product = {};
 
-        Products.get({ id: $routeParams.id }, function(product) {
-            $scope.product = product;
-        });
+        // Arrays
+        $scope.products = [];
 
-        $scope.update = function() {
-            console.log('..$scope.update');
+        // Booleans
+        $scope.loading = false;
+        $scope.success = false;
 
-            Products.update($scope.product, function() {
-                $location.path('/');
-            });
+        $scope.getOne = function() {
+            console.log('..$scope.getOne');
+            $scope.loading = true;
+
+            productFactory.getOne($routeParams.id)
+                .success(function(data) {
+                    $scope.loading = false;
+                    $scope.success = true;
+                    $scope.successProduct = data;
+                    $scope.product = {};
+                })
+
+            .error(function(data) {
+                $scope.loading = false;
+                $scope.success = false;
+                console.log('..some error: ', data);
+            })
         }
+
+        $scope.getOne();
+        // ProductsResource.get({
+        //     id: $routeParams.id
+        // }, function(product) {
+        //     $scope.product = product;
+        // });
+
+        // carsRes.cars.get(function(response) {
+        //     // We now have a completed ajax call, with the response
+        //     $scope.cars = response;
+        // });
+        //
+        // scope.user = User.get({
+        //     username: 'bob'
+        // });
+        // scope.user.$promise.then(function(data) {
+        //     console.log(data);
+        // });
+
+
+        // $scope.update = function() {
+        //     console.log('..$scope.update');
+        //
+        //     ProductsResource.update($scope.product, function() {
+        //         $location.path('/');
+        //     });
+        // }
     }
 ]);
