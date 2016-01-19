@@ -70,3 +70,25 @@ productModule.controller('AddProductCtrl', ['$scope', '$http', 'productFactory',
 
     }
 ]);
+
+productModule.controller('EditProductCtrl', ['$scope', '$resource', '$location', '$routeParams',
+    function($scope, $resource, $location, $routeParams) {
+        console.log('..EditProductCtrl');
+
+        var Products = $resource('/api/product/:id', { id: '@_id' }, {
+            update: { method: 'PUT' }
+        });
+
+        Products.get({ id: $routeParams.id }, function(product) {
+            $scope.product = product;
+        });
+
+        $scope.update = function() {
+            console.log('..$scope.update');
+
+            Products.update($scope.product, function() {
+                $location.path('/');
+            });
+        }
+    }
+]);

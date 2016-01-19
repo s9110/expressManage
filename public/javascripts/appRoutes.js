@@ -28,6 +28,12 @@ angular.module('appRoutes', ['productModule'])
         controller: 'GetProductsCtrl'
     })
 
+    // Edit Product
+    .when('/product/:id', {
+        templateUrl: 'partials/addProduct.html',
+        controller: 'EditProductCtrl'
+    })
+
     // Add Customer
     .when('/addcustomer', {
         templateUrl: 'partials/addCustomer.html',

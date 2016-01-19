@@ -26,6 +26,7 @@
                     <th>Name</th>
                     <th>Rate Per Month</th>
                     <th>Container Type</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -33,6 +34,9 @@
                     <td>{{ product.name }}</td>
                     <td>{{ product.ratePerMonth }}</td>
                     <td>{{ product.containerType }}</td>
+                    <td>
+                        <a href="/product/{{ product._id }}"><i class="fa fa-edit"></i> Edit</a>
+                    </td>
                 </tr>
             </tbody>
         </table>
