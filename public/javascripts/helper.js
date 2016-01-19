@@ -1,7 +1,7 @@
-// var hideSuccessSavePanel = function() {
-//     console.log('to hide success save panel');
-//     $(".close-new-saved").closest(".panel").hide();
-// }
+var hideSuccessSavePanel = function() {
+    console.log('..hideSuccessSavePanel');
+    $(".close-new-saved").closest(".panel").hide();
+}
 
 /*
  * To change this license header, choose License Headers in Project Properties.
