@@ -5,39 +5,39 @@ angular.module('appRoutes', ['productModule'])
     $routeProvider
 
     // home page
-        .when('/', {
+    .when('/', {
         templateUrl: 'partials/dashboard.html',
-        controller: 'ExpressManageController'
+        controller: 'ExpressManageCtrl'
     })
 
     // Under-Construction
     .when('/underconstruction', {
         templateUrl: 'partials/underConstruction.html',
-        controller: 'underConstructionController'
+        controller: 'UnderConstructionCtrl'
     })
 
     // Add Product
     .when('/addproduct', {
         templateUrl: 'partials/addProduct.html',
-        controller: 'productController'
+        controller: 'AddProductCtrl'
     })
 
     // View Products
     .when('/viewproducts', {
         templateUrl: 'partials/viewProducts.html',
-        controller: 'productController'
+        controller: 'GetProductsCtrl'
     })
 
     // Add Customer
     .when('/addcustomer', {
         templateUrl: 'partials/addCustomer.html',
-        controller: 'customerController'
+        controller: 'SaveCustomerCtrl'
     })
 
     // View Customers
     .when('/viewcustomers', {
         templateUrl: 'partials/viewCustomers.html',
-        controller: 'customerController'
+        controller: 'GetCustomersCtrl'
     })
 
     // default redirection

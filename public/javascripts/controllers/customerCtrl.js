@@ -1,62 +1,74 @@
-angular.module('customerModule', ['customerService'])
+var customerModule = angular.module('customerModule', ['customerService']);
 
-.controller('customerController', ['$scope', '$http', '$location', 'customerFactory',
-    function($scope, $http, $location, customerFactory) {
+customerModule.controller('GetCustomersCtrl', ['$scope', '$http', 'customerFactory',
+    function($scope, $http, customerFactory) {
+        console.log('..GetCustomerCtrl');
+
+        // Objects
         $scope.customer = {};
-        $scope.customers = [];
-        $scope.loading = false;
-        $scope.success = false;
         $scope.successCustomer = {};
 
-        $scope.addCustomer = function() {
+        // Arrays
+        $scope.customers = [];
+
+        // Booleans
+        $scope.loading = false;
+        $scope.success = false;
+
+        $scope.getCustomers = function() {
+            console.log('..$scope.getCustomers');
             $scope.loading = true;
 
-            customerFactory.create($scope.customer)
-
-            .success(function(data) {
-                $scope.loading = false;
-                $scope.success = true;
-                $scope.successCustomer = data;
-                $scope.customer = {};
-            })
-
-            // More error handling code to be added
-            // .error(function(data) {
-            //     $scope.loading = false;
-            // })
-        };
-
-        $scope.getCustomer = function() {
-            $scope.loading = true;
-
-            // customerFactory.get().then(successGetProducts(data), errorGetProducts(data));
             customerFactory.get()
                 .success(function(data) {
                     $scope.loading = false;
                     $scope.customers = data;
                 })
 
-            // More error handling code to be added
-            // .error(function(data) {
-            //     $scope.loading = false;
-            // })
+                // More error handling code to be added
+                // .error(function(data) {
+                //     $scope.loading = false;
+                // })
         }
 
-        // var successGetProducts = function() {
-        //     $scope.loading = false;
-        //     $scope.products = data;
-        // }
-        //
-        // var errorGetProducts = function() {
-        //     console.log('Oh snap!! Something went wrong!!!');
-        // }
+        // Call getCustomer()
+        $scope.getCustomers();
 
-        // get all products only if view product partial is being shown
-        console.log('... this is location : ', $location);
-        console.log('... this is $location.$$url : ', $location.$$url);
-        if ($location.$$url == '/viewcustomers') {
-            $scope.getCustomer();
-        }
     }
+]);
 
+customerModule.controller('SaveCustomerCtrl', ['$scope', '$http', 'customerFactory',
+    function($scope, $http, customerFactory) {
+        console.log('..SaveCustomerCtrl');
+
+        // Objects
+        $scope.customer = {};
+        $scope.successCustomer = {};
+
+        // Arrays
+        $scope.customers = [];
+
+        // Booleans
+        $scope.loading = false;
+        $scope.success = false;
+
+        $scope.addCustomer = function() {
+            console.log('..$scope.addCustomer');
+            $scope.loading = true;
+
+            customerFactory.create($scope.customer)
+                .success(function(data) {
+                    $scope.loading = false;
+                    $scope.success = true;
+                    $scope.successCustomer = data;
+                    $scope.customer = {};
+                })
+
+                // More error handling code to be added
+                // .error(function(data) {
+                //     $scope.loading = false;
+                // })
+        }
+
+    }
 ]);

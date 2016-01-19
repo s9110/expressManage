@@ -1,56 +1,72 @@
-angular.module('productModule', ['productService'])
+var productModule = angular.module('productModule', ['productService']);
 
-.controller('productController', ['$scope', '$http', '$location', 'productFactory',
-    function($scope, $http, $location, productFactory) {
+productModule.controller('GetProductsCtrl', ['$scope', '$http', 'productFactory',
+    function($scope, $http, productFactory) {
+        console.log('..GetProductsCtrl');
+
+        // Objects
         $scope.product = {};
+
+        // Arrays
         $scope.products = [];
+
+        // Booleans
         $scope.loading = false;
-        $scope.success = false;
-        $scope.successProduct = {
-            "name": "Product title",
-            "ratePerMonth": "0.00",
-            "containerType": "Box"
-        };
-
-        $scope.addProduct = function() {
-            $scope.loading = true;
-
-            productFactory.create($scope.product)
-
-            .success(function(data) {
-                $scope.loading = false;
-                $scope.success = true;
-                $scope.successProduct = data;
-                $scope.product = {};
-            })
-        };
 
         $scope.getProducts = function() {
+            console.log('..$scope.getProducts');
             $scope.loading = true;
 
-            // productFactory.get().then(successGetProducts(data), errorGetProducts(data));
             productFactory.get()
                 .success(function(data) {
                     $scope.loading = false;
                     $scope.products = data;
                 })
+
+                // More error handling code to be added
+                // .error(function(data) {
+                //     $scope.loading = false;
+                // })
         }
 
-        // var successGetProducts = function() {
-        //     $scope.loading = false;
-        //     $scope.products = data;
-        // }
-        //
-        // var errorGetProducts = function() {
-        //     console.log('Oh snap!! Something went wrong!!!');
-        // }
+        // Call $scope.getProducts()
+        $scope.getProducts();
 
-        // get all products only if view product partial is being shown
-        console.log('... this is location : ', $location);
-        console.log('... this is $location.$$url : ', $location.$$url);
-        if ($location.$$url == '/viewproducts') {
-            $scope.getProducts();
-        }
     }
+]);
 
+productModule.controller('AddProductCtrl', ['$scope', '$http', 'productFactory',
+    function($scope, $http, productFactory) {
+        console.log('..AddProductCtrl');
+
+        // Objects
+        $scope.product = {};
+        $scope.successProduct = {};
+
+        // Arrays
+        $scope.products = [];
+
+        // Booleans
+        $scope.loading = false;
+        $scope.success = false;
+
+        $scope.addProduct = function() {
+            console.log('..$scope.addProduct');
+            $scope.loading = true;
+
+            productFactory.create($scope.product)
+                .success(function(data) {
+                    $scope.loading = false;
+                    $scope.success = true;
+                    $scope.successProduct = data;
+                    $scope.product = {};
+                })
+
+                // More error handling code to be added
+                // .error(function(data) {
+                //     $scope.loading = false;
+                // })
+        }
+
+    }
 ]);
