@@ -1,20 +1,8 @@
-var productService = angular.module('productService', []);
-
-// services.factory('User', function($resource) {
-//     return $resource('/rest/usersettings/:username', {}, {
-//         get: {
-//             method: 'GET'
-//         },
-//         update: {
-//             method: 'POST'
-//         }
-//     });
-// });
-
+var productService = angular.module('productService', ['ngResource']);
 
 // each function returns a promise object
-productService.factory('productFactory', ['$http',
-    function($http) {
+productService.factory('productFactory', ['$http', '$resource',
+    function($http, $resource) {
         var productFactory = {};
 
         productFactory.get = function() {
@@ -25,40 +13,15 @@ productService.factory('productFactory', ['$http',
             return $http.post('/api/product', product);
         }
 
-        productFactory.getOne = function(id) {
-            return $http.get('/api/product/:id', id);
+        productFactory.update = function() {
+            return $resource('/api/product/:id', {
+                id: '@_id'
+            }, {
+                update: {
+                    method: 'PUT'
+                }
+            });
         }
-
-        // productFactory.update = function(id) {
-        //     return $resource('/api/product/:id', {
-        //         id: '@_id'
-        //     }, {
-        //         update: {
-        //             method: 'PUT'
-        //         }
-        //     });
-        // }
-
-
-        // var ProductsResource = $resource('/api/product/:id', {
-        //     id: '@_id'
-        // }, {
-        //     update: {
-        //         method: 'PUT'
-        //     }
-        // });
-
-
-        // services.factory('User', function($resource) {
-        //     return $resource('/rest/usersettings/:username', {}, {
-        //         get: {
-        //             method: 'GET'
-        //         },
-        //         update: {
-        //             method: 'POST'
-        //         }
-        //     });
-        // });
 
         return productFactory;
 

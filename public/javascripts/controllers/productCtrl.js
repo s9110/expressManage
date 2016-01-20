@@ -24,9 +24,10 @@ productModule.controller('GetProductsCtrl', ['$scope', '$http', 'productFactory'
                 })
 
             // More error handling code to be added
-            // .error(function(data) {
-            //     $scope.loading = false;
-            // })
+            .error(function(data) {
+                $scope.loading = false;
+                console.log('..error data: ', data);
+            })
         }
 
         // Call $scope.getProducts()
@@ -49,6 +50,7 @@ productModule.controller('AddProductCtrl', ['$scope', '$http', 'productFactory',
         // Booleans
         $scope.loading = false;
         $scope.success = false;
+        $scope.insert = true;
 
         $scope.addProduct = function() {
             console.log('..$scope.addProduct');
@@ -63,16 +65,17 @@ productModule.controller('AddProductCtrl', ['$scope', '$http', 'productFactory',
                 })
 
             // More error handling code to be added
-            // .error(function(data) {
-            //     $scope.loading = false;
-            // })
+            .error(function(data) {
+                $scope.loading = false;
+                console.log('..error data: ', data);
+            })
         }
 
     }
 ]);
 
-productModule.controller('EditProductCtrl', ['$scope', '$routeParams', 'productFactory',
-    function($scope, $routeParams, productFactory) {
+productModule.controller('EditProductCtrl', ['$scope', '$location', '$routeParams', 'productFactory',
+    function($scope, $location, $routeParams, productFactory) {
         console.log('..EditProductCtrl');
         console.log('..EditProductCtrl -> $routeParams.id: ' + $routeParams.id);
 
@@ -84,52 +87,34 @@ productModule.controller('EditProductCtrl', ['$scope', '$routeParams', 'productF
         // Booleans
         $scope.loading = false;
         $scope.success = false;
+        $scope.update = true;
 
-        $scope.getOne = function() {
-            console.log('..$scope.getOne');
+        var Products = productFactory.update();
+
+        Products.get({
+            id: $routeParams.id
+        }, function(product) {
+            $scope.product = product;
+        });
+
+        $scope.updateProduct = function() {
+            console.log('..$scope.updateProduct');
             $scope.loading = true;
 
-            productFactory.getOne($routeParams.id)
-                .success(function(data) {
+            Products.update($scope.product, function(data) {
+                console.log('..$scope.updateProduct -> data: ', data);
+
+                if(data.$resolved == true) {
                     $scope.loading = false;
                     $scope.success = true;
-                    $scope.successProduct = data;
-                    $scope.product = {};
-                })
+                    $scope.successProduct = $scope.product;
 
-            .error(function(data) {
-                $scope.loading = false;
-                $scope.success = false;
-                console.log('..some error: ', data);
-            })
+                } else {
+                    $scope.loading = false;
+                    console.log('..data: ', data);
+                }
+                // $location.path('/');
+            });
         }
-
-        $scope.getOne();
-        // ProductsResource.get({
-        //     id: $routeParams.id
-        // }, function(product) {
-        //     $scope.product = product;
-        // });
-
-        // carsRes.cars.get(function(response) {
-        //     // We now have a completed ajax call, with the response
-        //     $scope.cars = response;
-        // });
-        //
-        // scope.user = User.get({
-        //     username: 'bob'
-        // });
-        // scope.user.$promise.then(function(data) {
-        //     console.log(data);
-        // });
-
-
-        // $scope.update = function() {
-        //     console.log('..$scope.update');
-        //
-        //     ProductsResource.update($scope.product, function() {
-        //         $location.path('/');
-        //     });
-        // }
     }
 ]);
