@@ -120,25 +120,25 @@ productModule.controller('EditProductCtrl', ['$scope', '$location', '$routeParam
 ]);
 
 
-app.controller('DeleteVideoCtrl', ['$scope', '$resource', '$location', '$routeParams',
-    function($scope, $resource, $location, $routeParams) {
-        var Videos = $resource('/api/videos/:id');
-
-        Videos.get({
-            id: $routeParams.id
-        }, function(video) {
-            $scope.video = video;
-        })
-
-        $scope.delete = function() {
-            Videos.delete({
-                id: $routeParams.id
-            }, function(video) {
-                $location.path('/');
-            });
-        }
-    }
-]);
+// app.controller('DeleteVideoCtrl', ['$scope', '$resource', '$location', '$routeParams',
+//     function($scope, $resource, $location, $routeParams) {
+//         var Videos = $resource('/api/videos/:id');
+//
+//         Videos.get({
+//             id: $routeParams.id
+//         }, function(video) {
+//             $scope.video = video;
+//         })
+//
+//         $scope.delete = function() {
+//             Videos.delete({
+//                 id: $routeParams.id
+//             }, function(video) {
+//                 $location.path('/');
+//             });
+//         }
+//     }
+// ]);
 
 
 
@@ -165,14 +165,17 @@ productModule.controller('DeleteProductCtrl', ['$scope', '$location', '$routePar
         });
 
         $scope.deleteProduct = function() {
+            $scope.loading = true;
+
             Products.delete({
                 id: $routeParams.id
             }, function(product) {
-                console.log('..$scope.updateProduct -> product: ', product);
+                console.log('..$scope.deleteProduct -> product: ', product);
 
-                if (data.$resolved == true) {
+                if (product.$resolved == true) {
                     $scope.loading = false;
                     $scope.success = true;
+                    $scope.product = {};
 
                 } else {
                     $scope.loading = false;
