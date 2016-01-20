@@ -8,7 +8,11 @@
         </div>
     </div>
 
-    <div class="row">
+    <p class="text-center" ng-show="loading">
+        <span class="fa fa-spinner fa-pulse fa-3x"></span>
+    </p>
+
+    <div class="row" ng-hide="loading">
         <div class="panel panel-danger">
             <div class="panel-heading">
                 <!-- <button type="button" class="close close-new-saved pull-right" aria-label="Close" onClick="hideSuccessSavePanel();">
