@@ -23,6 +23,10 @@ productService.factory('productFactory', ['$http', '$resource',
             });
         }
 
+        productFactory.delete = function() {
+            return $resource('/api/product/:id');
+        }
+
         return productFactory;
 
     }

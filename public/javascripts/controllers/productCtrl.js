@@ -104,7 +104,7 @@ productModule.controller('EditProductCtrl', ['$scope', '$location', '$routeParam
             Products.update($scope.product, function(data) {
                 console.log('..$scope.updateProduct -> data: ', data);
 
-                if(data.$resolved == true) {
+                if (data.$resolved == true) {
                     $scope.loading = false;
                     $scope.success = true;
                     $scope.successProduct = $scope.product;
@@ -112,6 +112,71 @@ productModule.controller('EditProductCtrl', ['$scope', '$location', '$routeParam
                 } else {
                     $scope.loading = false;
                     console.log('..data: ', data);
+                }
+                // $location.path('/');
+            });
+        }
+    }
+]);
+
+
+app.controller('DeleteVideoCtrl', ['$scope', '$resource', '$location', '$routeParams',
+    function($scope, $resource, $location, $routeParams) {
+        var Videos = $resource('/api/videos/:id');
+
+        Videos.get({
+            id: $routeParams.id
+        }, function(video) {
+            $scope.video = video;
+        })
+
+        $scope.delete = function() {
+            Videos.delete({
+                id: $routeParams.id
+            }, function(video) {
+                $location.path('/');
+            });
+        }
+    }
+]);
+
+
+
+productModule.controller('DeleteProductCtrl', ['$scope', '$location', '$routeParams', 'productFactory',
+    function($scope, $location, $routeParams, productFactory) {
+        console.log('..DeleteProductCtrl');
+        console.log('..DeleteProductCtrl -> $routeParams.id: ' + $routeParams.id);
+
+        $scope.product = {};
+
+        // Arrays
+        $scope.products = [];
+
+        // Booleans
+        $scope.loading = false;
+        $scope.success = false;
+
+        var Products = productFactory.delete();
+
+        Products.get({
+            id: $routeParams.id
+        }, function(product) {
+            $scope.product = product;
+        });
+
+        $scope.deleteProduct = function() {
+            Products.delete({
+                id: $routeParams.id
+            }, function(product) {
+                console.log('..$scope.updateProduct -> product: ', product);
+
+                if (data.$resolved == true) {
+                    $scope.loading = false;
+                    $scope.success = true;
+
+                } else {
+                    $scope.loading = false;
+                    console.log('..product: ', product);
                 }
                 // $location.path('/');
             });

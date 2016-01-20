@@ -34,6 +34,11 @@ angular.module('appRoutes', ['productModule'])
         controller: 'EditProductCtrl'
     })
 
+    .when('/product/delete/:id', {
+        templateUrl: 'partials/deleteConfirmation.html',
+        controller: 'DeleteProductCtrl'
+    })
+
     // Add Customer
     .when('/addcustomer', {
         templateUrl: 'partials/addCustomer.html',
