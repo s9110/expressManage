@@ -74,7 +74,8 @@ productModule.controller('AddProductCtrl', ['$scope', '$http', 'productFactory',
     }
 ]);
 
-productModule.controller('EditProductCtrl', ['$scope', '$location', '$routeParams', 'productFactory',
+productModule.controller('EditProductCtrl', ['$scope', '$location', '$routeParams',
+    'productFactory',
     function($scope, $location, $routeParams, productFactory) {
         console.log('..EditProductCtrl');
         console.log('..EditProductCtrl -> $routeParams.id: ' + $routeParams.id);
@@ -119,7 +120,8 @@ productModule.controller('EditProductCtrl', ['$scope', '$location', '$routeParam
     }
 ]);
 
-productModule.controller('DeleteProductCtrl', ['$scope', '$location', '$routeParams', 'productFactory',
+productModule.controller('DeleteProductCtrl', ['$scope', '$location', '$routeParams',
+    'productFactory',
     function($scope, $location, $routeParams, productFactory) {
         console.log('..DeleteProductCtrl');
         console.log('..DeleteProductCtrl -> $routeParams.id: ' + $routeParams.id);
@@ -131,7 +133,7 @@ productModule.controller('DeleteProductCtrl', ['$scope', '$location', '$routePar
 
         // Booleans
         $scope.loading = true;
-        $scope.success = false;
+        // $scope.success = false;
 
         var Products = productFactory.delete();
 
@@ -152,14 +154,15 @@ productModule.controller('DeleteProductCtrl', ['$scope', '$location', '$routePar
 
                 if (product.$resolved == true) {
                     $scope.loading = false;
-                    $scope.success = true;
+                    // $scope.success = true;
                     $scope.product = {};
+
+                    $location.path('/viewproducts');
 
                 } else {
                     $scope.loading = false;
                     console.log('..product: ', product);
                 }
-                // $location.path('/');
             });
         }
     }
