@@ -13,12 +13,6 @@
         <span class="fa fa-spinner fa-pulse fa-3x"></span>
     </p>
 
-    <!-- <ul>
-        <li ng-repeat="product in products">
-            {{ product }}
-        </li>
-    </ul> -->
-
     <div class="table-responsive">
         <table class="table table-bordered table-hover table-striped table-responsive" ng-hide="loading">
             <thead>
@@ -26,6 +20,7 @@
                     <th>Name</th>
                     <th>Rate Per Month</th>
                     <th>Container Type</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -33,6 +28,11 @@
                     <td>{{ product.name }}</td>
                     <td>{{ product.ratePerMonth }}</td>
                     <td>{{ product.containerType }}</td>
+                    <td>
+                        <a href="/product/{{ product._id }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
+                        <b>|</b>
+                        <a href="/product/delete/{{ product._id }}"><i class="fa fa-fw fa-trash"></i> Delete</a>
+                    </td>
                 </tr>
             </tbody>
         </table>

@@ -30,4 +30,44 @@ router.post('/', function(req, res) {
     });
 });
 
+// Get single existing product
+router.get('/:id', function(req, res) {
+    var collection = database.get('products');
+    collection.findOne({
+        _id: req.params.id
+    }, function(err, product) {
+        if (err) throw err;
+
+        res.json(product);
+    });
+});
+
+// Update single existing product
+router.put('/:id', function(req, res) {
+    var collection = database.get('products');
+    collection.update({
+        _id: req.params.id
+    }, {
+        name: req.body.name,
+        ratePerMonth: req.body.ratePerMonth,
+        containerType: req.body.containerType
+    }, function(err, product) {
+        if (err) throw err;
+
+        res.json(product);
+    });
+});
+
+// Delete existing product
+router.delete('/:id', function(req, res) {
+    var collection = database.get('products');
+    collection.remove({
+        _id: req.params.id
+    }, function(err, product) {
+        if (err) throw err;
+
+        res.json(product);
+    });
+});
+
 module.exports = router;

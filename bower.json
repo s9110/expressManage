@@ -24,6 +24,7 @@
     "angular-route": "~1.4.8",
     "font-awesome-animation": "~0.0.8",
     "jquery.nicescroll": "jquery-nicescroll#~3.6.6",
-    "animate.css": "~3.5.1"
+    "animate.css": "~3.5.1",
+    "angular-resource": "~1.4.8"
   }
 }

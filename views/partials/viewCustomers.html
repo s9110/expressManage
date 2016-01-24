@@ -24,6 +24,7 @@
                     <th>City</th>
                     <th>Mobile Number</th>
                     <th>Landline</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -36,6 +37,11 @@
                     <td>{{ customer.city }}</td>
                     <td>{{ customer.mobile }}</td>
                     <td>{{ customer.landline }}</td>
+                    <td>
+                        <a href="/customer/{{ customer._id }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
+                        <b>|</b>
+                        <a href="/customer/delete/{{ customer._id }}"><i class="fa fa-fw fa-trash"></i> Delete</a>
+                    </td>
                 </tr>
             </tbody>
         </table>

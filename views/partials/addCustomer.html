@@ -50,7 +50,12 @@
                 <input type="number" class="form-control" id="landline" placeholder="02554 233121" ng-model="customer.landline">
             </div>
 
-            <button type="submit" class="btn btn-primary center-block" ng-click="addCustomer();">Add Customer</button>
+            <div class="pull-right">
+                <button type="submit" class="btn btn-primary" ng-click="addCustomer();" ng-hide="update">Add Customer</button>
+                <button type="submit" class="btn btn-primary" ng-click="updateCustomer();" ng-show="update">Update Customer</button>
+                <a class="btn btn-primary" href="/">Cancel</a>
+            </div>
+
         </form>
     </div>
 
