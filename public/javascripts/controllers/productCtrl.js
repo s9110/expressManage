@@ -4,14 +4,12 @@ productModule.controller('GetProductsCtrl', ['$scope', '$http', 'productFactory'
     function($scope, $http, productFactory) {
         console.log('..GetProductsCtrl');
 
-        // Objects
-        $scope.product = {};
-
         // Arrays
         $scope.products = [];
 
         // Booleans
         $scope.loading = false;
+        $scope.success = false;
 
         $scope.getProducts = function() {
             console.log('..$scope.getProducts');
@@ -20,12 +18,14 @@ productModule.controller('GetProductsCtrl', ['$scope', '$http', 'productFactory'
             productFactory.get()
                 .success(function(data) {
                     $scope.loading = false;
+                    $scope.success = true;
                     $scope.products = data;
                 })
 
             // More error handling code to be added
             .error(function(data) {
                 $scope.loading = false;
+                $scope.success = false;
                 console.log('..error data: ', data);
             })
         }
@@ -67,6 +67,7 @@ productModule.controller('AddProductCtrl', ['$scope', '$http', 'productFactory',
             // More error handling code to be added
             .error(function(data) {
                 $scope.loading = false;
+                $scope.success = false;
                 console.log('..error data: ', data);
             })
         }
@@ -112,6 +113,7 @@ productModule.controller('EditProductCtrl', ['$scope', '$location', '$routeParam
 
                 } else {
                     $scope.loading = false;
+                    $scope.success = false;
                     console.log('..data: ', data);
                 }
                 // $location.path('/');
@@ -133,7 +135,7 @@ productModule.controller('DeleteProductCtrl', ['$scope', '$location', '$routePar
 
         // Booleans
         $scope.loading = true;
-        // $scope.success = false;
+        $scope.success = false;
 
         var Products = productFactory.delete();
 
@@ -154,13 +156,14 @@ productModule.controller('DeleteProductCtrl', ['$scope', '$location', '$routePar
 
                 if (product.$resolved == true) {
                     $scope.loading = false;
-                    // $scope.success = true;
+                    $scope.success = true;
                     $scope.product = {};
 
                     $location.path('/viewproducts');
 
                 } else {
                     $scope.loading = false;
+                    $scope.success = false;
                     console.log('..product: ', product);
                 }
             });

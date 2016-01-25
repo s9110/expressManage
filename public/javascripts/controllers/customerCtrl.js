@@ -7,6 +7,7 @@ customerModule.controller('GetCustomersCtrl', ['$scope', '$http', 'customerFacto
         // Objects
         $scope.customer = {};
         $scope.successCustomer = {};
+        $scope.errorData = {};
 
         // Arrays
         $scope.customers = [];
@@ -22,12 +23,16 @@ customerModule.controller('GetCustomersCtrl', ['$scope', '$http', 'customerFacto
             customerFactory.get()
                 .success(function(data) {
                     $scope.loading = false;
+                    $scope.success = true;
                     $scope.customers = data;
                 })
 
             // More error handling code to be added
             .error(function(data) {
                 $scope.loading = false;
+                $scope.success = false;
+                $scope.errorData = data;
+
                 console.log('..error data: ', data);
             })
         }
@@ -45,6 +50,8 @@ customerModule.controller('SaveCustomerCtrl', ['$scope', '$http', 'customerFacto
         // Objects
         $scope.customer = {};
         $scope.successCustomer = {};
+        $scope.errorData = {};
+
 
         // Arrays
         $scope.customers = [];
@@ -68,6 +75,8 @@ customerModule.controller('SaveCustomerCtrl', ['$scope', '$http', 'customerFacto
             // More error handling code to be added
             .error(function(data) {
                 $scope.loading = false;
+                $scope.success = false;
+                $scope.errorData = data;
                 console.log('..error data: ', data);
             })
         }
@@ -84,6 +93,7 @@ customerModule.controller('EditCustomerCtrl', ['$scope', '$location', '$routePar
         // Objects
         $scope.customer = {};
         $scope.successCustomer = {};
+        $scope.errorData = {};
 
         // Arrays
         $scope.customers = [];
@@ -115,6 +125,8 @@ customerModule.controller('EditCustomerCtrl', ['$scope', '$location', '$routePar
 
                 } else {
                     $scope.loading = false;
+                    $scope.success = false;
+                    $scope.errorData = data;
                     console.log('..data: ', data);
                 }
                 // $location.path('/');
@@ -131,9 +143,11 @@ customerModule.controller('DeleteCustomerCtrl', ['$scope', '$location', '$routeP
 
         // Objects
         $scope.customer = {};
+        $scope.errorData = {};
 
         // Booleans
         $scope.loading = true;
+        $scope.success = false;
 
         var Customers = customerFactory.delete();
 
@@ -154,11 +168,14 @@ customerModule.controller('DeleteCustomerCtrl', ['$scope', '$location', '$routeP
 
                 if (customer.$resolved == true) {
                     $scope.loading = false;
+                    $scope.success = true;
                     $scope.customer = {};
 
                     $location.path('/viewcustomers');
                 } else {
                     $scope.loading = false;
+                    $scope.success = false;
+                    $scope.errorData = customer;
                     console.log('..customer: ', customer);
                 }
             });
