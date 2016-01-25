@@ -1,4 +1,4 @@
-var underConstructionModule = angular.module('underConstructionCtrl', []);
+var underConstructionModule = angular.module('underConstructionModule', []);
 
 underConstructionModule.controller('UnderConstructionCtrl', function($scope) {
     console.log('..UnderConstructionCtrl');

@@ -9,7 +9,7 @@
     </div>
 
     <div class="row" ng-hide="loading">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-6 col-md-offset-3">
             <form>
                 <div class="form-group">
                     <label for="firmName"> Firm: </label>
@@ -52,9 +52,9 @@
                 </div>
 
                 <div class="pull-right">
+                    <a class="btn btn-default" href="/">Cancel</a>
                     <button type="submit" class="btn btn-primary" ng-click="addCustomer();" ng-hide="update">Add Customer</button>
                     <button type="submit" class="btn btn-primary" ng-click="updateCustomer();" ng-show="update">Update Customer</button>
-                    <a class="btn btn-primary" href="/">Cancel</a>
                 </div>
 
             </form>
@@ -64,7 +64,7 @@
     <br/>
 
     <div class="row" ng-show="success">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-6 col-md-offset-3">
             <div class="panel panel-success">
                 <div class="panel-heading">
                     <button type="button" class="close close-new-saved pull-right" aria-label="Close" onClick="hideSuccessSavePanel();">
@@ -109,5 +109,10 @@
     <p class="text-center" ng-show="loading">
         <span class="fa fa-spinner fa-pulse fa-3x"></span>
     </p>
+
+    <!-- <div class="alert alert-danger" role="alert" ng-show="(!success && !loading)">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error: {{ errorData }}</span>
+    </div> -->
 
 </div>

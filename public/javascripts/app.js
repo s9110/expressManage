@@ -1,8 +1,8 @@
 angular.module('manageExpress', [
     'ngRoute',
     'appRoutes',
-    'expressManageCtrl',
-    'underConstructionCtrl',
+    'expressManageModule',
+    'underConstructionModule',
     'productModule',
     'customerModule'
 ]);

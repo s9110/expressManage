@@ -128,7 +128,7 @@
                 <div class="left_col scroll-view">
 
                     <div class="navbar nav_title" style="border: 0;">
-                        <a href="/" class="site_title"><i class="fa fa-bank"></i> <span>My Dashboard</span></a>
+                        <a href="/" class="site_title"><i class="fa fa-home"></i> <span>Home</span></a>
                     </div>
                     <div class="clearfix"></div>
 
@@ -137,11 +137,57 @@
 
                         <br/><br/>
                         <div class="menu_section">
-                            <h3>Menu</h3>
+                            <h3>Orders</h3>
                             <ul class="nav side-menu">
+                                <li>
+                                    <a> <i class="fa fa-fw fa-sign-in"></i> In Order <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu" style="display: none">
+                                        <li>
+                                            <a href="/addinorder"> New In Order</a>
+                                        </li>
+
+                                        <li>
+                                            <a href="/viewinorders"> View In Orders</a>
+                                        </li>
+                                    </ul>
+                                </li>
 
                                 <li>
+                                    <a> <i class="fa fa-fw fa-sign-out"></i> Out Order <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu" style="display: none">
+                                        <li>
+                                            <a href="/addoutorder"> New Out Order</a>
+                                        </li>
+
+                                        <li>
+                                            <a href="/viewoutorders"> View Out Orders</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="menu_section">
+                            <h3>Records</h3>
+                            <ul class="nav side-menu">
+
+                                <!-- <li>
                                     <a href="/"><i class="fa fa-home"></i> Home </a>
+                                </li> -->
+
+                                <li>
+                                    <a> <i class="fa fa-fw fa-users"></i> Customers <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu" style="display: none">
+                                        <li>
+                                            <!-- <a href="/addcustomer"><i class="fa fa-fw fa-plus"></i> Add Customer</a> -->
+                                            <a href="/addcustomer"> Add Customer</a>
+                                        </li>
+
+                                        <li>
+                                            <!-- <a href="/viewcustomers"><i class="fa fa-fw fa-search-plus"></i> View Customers</a> -->
+                                            <a href="/viewcustomers"> View Customers</a>
+                                        </li>
+                                    </ul>
                                 </li>
 
                                 <li>
@@ -159,23 +205,9 @@
                                     </ul>
                                 </li>
 
-                                <li>
-                                    <a> <i class="fa fa-fw fa-users"></i> Customers <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu" style="display: none">
-                                        <li>
-                                            <!-- <a href="/addcustomer"><i class="fa fa-fw fa-plus"></i> Add Customer</a> -->
-                                            <a href="/addcustomer"> Add Customer</a>
-                                        </li>
-
-                                        <li>
-                                            <!-- <a href="/viewcustomers"><i class="fa fa-fw fa-search-plus"></i> View Customers</a> -->
-                                            <a href="/viewcustomers"> View Customers</a>
-                                        </li>
-                                    </ul>
-                                </li>
-
                             </ul>
                         </div>
+
                     </div>
                     <!-- /sidebar menu -->
 

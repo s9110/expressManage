@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">
-                <i class="fa fa-cubes"></i> Add Product
+                <i class="fa fa-sign-in"></i> New In Order
             </h1>
         </div>
     </div>
@@ -11,11 +11,23 @@
     <div class="row" ng-hide="loading">
         <div class="col-md-6 col-md-offset-3">
             <form>
+
                 <div class="form-group">
-                    <label for="productName">Product Name: </label>
-                    <input type="text" class="form-control" id="productName" placeholder="Product Name" ng-model="product.name">
+                    <!-- <label for="orderDate">Date: </label>
+                    <input type="datetime" class="form-control" id="orderDate" ng-model="order.date"> -->
+                    <div class="input-group">
+                        <label for="orderDate">Date: </label>
+                        <input type="text" class="form-control" id="orderDate">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button"><i class="fa fa-calendar"></i></button>
+                        </span>
+                    </div>
                 </div>
 
+
+
+
+                <!--
                 <div class="form-group">
                     <label for="ratePerMonth">Rate Per Month: </label>
                     <input type="number" class="form-control" id="ratePerMonth" placeholder="0.00" ng-model="product.ratePerMonth">
@@ -27,12 +39,12 @@
                         <option>Box</option>
                         <option>Bag</option>
                     </select>
-                </div>
+                </div> -->
 
                 <div class="pull-right">
                     <a class="btn btn-default" href="/">Cancel</a>
-                    <button type="submit" class="btn btn-primary" ng-click="addProduct();" ng-show="insert">Add Product</button>
-                    <button type="submit" class="btn btn-primary" ng-click="updateProduct();" ng-show="update">Update Product</button>
+                    <button type="submit" class="btn btn-primary">Add Product</button>
+                    <button type="submit" class="btn btn-primary">Update Product</button>
                 </div>
 
             </form>
@@ -42,7 +54,7 @@
     <br/>
 
     <div class="row" ng-show="success">
-        <div class="col-md-6 col-md-offset-3">
+        <!-- <div class="col-md-8 col-md-offset-2">
 
             <div class="panel panel-success">
                 <div class="panel-heading">
@@ -72,7 +84,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 
     <p class="text-center" ng-show="loading">

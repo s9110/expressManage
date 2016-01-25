@@ -1,27 +1,38 @@
+<p class="text-center" ng-show="loading">
+    <span class="fa fa-spinner fa-pulse fa-3x"></span>
+</p>
+
+<div class="alert alert-danger" role="alert" ng-show="(!success && !loading)">
+    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+    <span class="sr-only">Error: {{ errorData }}</span>
+</div>
+
 <br />
-<div class="">
+<div class="" ng-hide="loading">
 
     <div class="row top_tiles">
         <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
             <div class="tile-stats">
-                <div class="icon"><i class="fa fa-caret-square-o-right"></i>
+                <div class="icon"><i class="fa fa-cubes"></i>
                 </div>
-                <div class="count">179</div>
+                <div class="count">{{ productCount }}</div>
 
-                <h3>New Sign ups</h3>
-                <p>Lorem ipsum psdea itgum rixt.</p>
+                <h3>Products</h3>
+                <p>Total {{ productCount }} products.</p>
             </div>
         </div>
+
         <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
             <div class="tile-stats">
-                <div class="icon"><i class="fa fa-comments-o"></i>
+                <div class="icon"><i class="fa  fa-users"></i>
                 </div>
-                <div class="count">179</div>
+                <div class="count">{{ customerCount }}</div>
 
-                <h3>New Sign ups</h3>
-                <p>Lorem ipsum psdea itgum rixt.</p>
+                <h3>Customers</h3>
+                <p>Total {{ customerCount }} customers.</p>
             </div>
         </div>
+
         <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
             <div class="tile-stats">
                 <div class="icon"><i class="fa fa-sort-amount-desc"></i>
@@ -32,6 +43,7 @@
                 <p>Lorem ipsum psdea itgum rixt.</p>
             </div>
         </div>
+
         <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
             <div class="tile-stats">
                 <div class="icon"><i class="fa fa-check-square-o"></i>

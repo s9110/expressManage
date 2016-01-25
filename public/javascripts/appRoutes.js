@@ -5,9 +5,9 @@ angular.module('appRoutes', ['productModule'])
     $routeProvider
 
     // home page
-        .when('/', {
+    .when('/', {
         templateUrl: 'partials/dashboard.html',
-        controller: 'ExpressManageCtrl'
+        controller: 'ExpressManageInitCtrl'
     })
 
     // Under-Construction
@@ -59,10 +59,32 @@ angular.module('appRoutes', ['productModule'])
         controller: 'EditCustomerCtrl'
     })
 
+    // Delete Customer
     .when('/customer/delete/:id', {
         templateUrl: 'partials/deleteCustomer.html',
         controller: 'DeleteCustomerCtrl'
     })
+
+    // Add In order
+    .when('/addinorder', {
+        templateUrl: 'partials/addInOrder.html'
+    })
+
+    // View In Orders
+    .when('/viewinorders', {
+        templateUrl: 'partials/viewInOrders.html'
+    })
+
+    // Add Out Order
+    .when('/addoutorder', {
+        templateUrl: 'partials/addOutOrder.html'
+    })
+
+    // View Out Orders
+    .when('/viewoutorders', {
+        templateUrl: 'partials/viewOutOrders.html'
+    })
+
 
     // default redirection
     .otherwise({
