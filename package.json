@@ -4,7 +4,7 @@
     "private": true,
     "scripts": {
         "start": "node ./bin/www",
-        "postinstall": "bower install"
+        "postinstall": "HOME=$HOME/app-root/runtime bower install"
     },
     "main": "./bin/www",
     "dependencies": {
