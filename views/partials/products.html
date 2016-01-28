@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">
-                <i class="fa fa-cubes"></i> Add Product
+                <i class="fa fa-cubes"></i> {{  headerTitle  }}
             </h1>
         </div>
     </div>
@@ -13,34 +13,38 @@
             <form>
                 <div class="form-group">
                     <label for="productName">Product Name: </label>
-                    <input type="text" class="form-control" id="productName" placeholder="Product Name" ng-model="product.name">
+                    <input type="text" class="form-control delete-mode-disabled" id="productName" placeholder="Product Name" ng-model="product.name">
                 </div>
 
                 <div class="form-group">
                     <label for="ratePerMonth">Rate Per Month: </label>
-                    <input type="number" class="form-control" id="ratePerMonth" placeholder="0.00" ng-model="product.ratePerMonth">
+                    <input type="number" class="form-control delete-mode-disabled" id="ratePerMonth" placeholder="0.00" ng-model="product.ratePerMonth">
                 </div>
 
                 <div class="form-group">
                     <label for="containerType">Container Type: </label>
-                    <select class="form-control" id="containerType" ng-model="product.containerType">
+                    <select class="form-control delete-mode-disabled" id="containerType" ng-model="product.containerType">
                         <option>Box</option>
                         <option>Bag</option>
                     </select>
                 </div>
 
-                <div class="pull-right">
-                    <a class="btn btn-default" href="/">Cancel</a>
-                    <button type="submit" class="btn btn-primary" ng-click="addProduct();" ng-show="insert">Add Product</button>
-                    <button type="submit" class="btn btn-primary" ng-click="updateProduct();" ng-show="update">Update Product</button>
+                <br/>
+                <div class="form-group" ng-show="delete">
+                    <h3><i class="fa fa-fw fa-warning"></i> {{ message}} </h3>
                 </div>
 
+                <div class="pull-right">
+                    <a class="btn btn-default" href="/viewproducts">Cancel</a>
+                    <button type="submit" class="btn btn-primary" ng-click="addProduct();" ng-show="insert">Add Product</button>
+                    <button type="submit" class="btn btn-primary" ng-click="updateProduct();" ng-show="update">Update Product</button>
+                    <button type="submit" class="btn btn-danger" ng-click="deleteProduct();" ng-show="delete">Delete Product</button>
+                </div>
             </form>
         </div>
     </div>
 
     <br/>
-
     <div class="row" ng-show="success">
         <div class="col-md-6 col-md-offset-3">
 
@@ -78,10 +82,5 @@
     <p class="text-center" ng-show="loading">
         <span class="fa fa-spinner fa-pulse fa-3x"></span>
     </p>
-
-    <!-- <div class="alert alert-danger" role="alert" ng-show="(!success && !loading)">
-        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-        <span class="sr-only">Error: {{ errorData }}</span>
-    </div> -->
 
 </div>

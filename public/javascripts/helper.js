@@ -1,8 +1,3 @@
-var hideSuccessSavePanel = function() {
-    console.log('..hideSuccessSavePanel');
-    $(".close-new-saved").closest(".panel").hide();
-}
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -320,3 +315,28 @@ $(document).ready(function () {
 
 });
 /** ******  /scrollview  *********************** **/
+
+
+
+// ========================================
+// Helper JS methods for partials and views
+// ========================================
+
+//
+// Mark input fields disabled in delete mode
+//
+var markDisableInDelete = function () {
+    console.log('..markDisableInDelete');
+    var formElements = $(".delete-mode-disabled");
+    formElements.attr("disabled", "disabled");
+
+    return true;
+}
+
+//
+// Hide success panel on button click
+//
+var hideSuccessSavePanel = function() {
+    console.log('..hideSuccessSavePanel');
+    $(".close-new-saved").closest(".panel").hide();
+}

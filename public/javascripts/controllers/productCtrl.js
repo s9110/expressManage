@@ -40,6 +40,10 @@ productModule.controller('AddProductCtrl', ['$scope', '$http', 'productFactory',
     function($scope, $http, productFactory) {
         console.log('..AddProductCtrl');
 
+        // Page UI values
+        $scope.headerTitle = 'Add Product';
+        $scope.message = '';
+
         // Objects
         $scope.product = {};
         $scope.successProduct = {};
@@ -81,6 +85,11 @@ productModule.controller('EditProductCtrl', ['$scope', '$location', '$routeParam
         console.log('..EditProductCtrl');
         console.log('..EditProductCtrl -> $routeParams.id: ' + $routeParams.id);
 
+        // Page UI values
+        $scope.headerTitle = 'Edit Product';
+        $scope.message = '';
+
+        // Objects
         $scope.product = {};
 
         // Arrays
@@ -128,6 +137,14 @@ productModule.controller('DeleteProductCtrl', ['$scope', '$location', '$routePar
         console.log('..DeleteProductCtrl');
         console.log('..DeleteProductCtrl -> $routeParams.id: ' + $routeParams.id);
 
+        // Mark form fields disabled
+        markDisableInDelete();
+
+        // Page UI values
+        $scope.headerTitle = 'Delete Product';
+        $scope.message = 'Are you sure you want to delete this product?';
+
+        // Objects
         $scope.product = {};
 
         // Arrays
@@ -136,6 +153,7 @@ productModule.controller('DeleteProductCtrl', ['$scope', '$location', '$routePar
         // Booleans
         $scope.loading = true;
         $scope.success = false;
+        $scope.delete = true;
 
         var Products = productFactory.delete();
 
