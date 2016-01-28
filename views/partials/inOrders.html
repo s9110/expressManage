@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">
-                <i class="fa fa-sign-in"></i> New In Order
+                <i class="fa fa-sign-in"></i> {{ headerTitle }}
             </h1>
         </div>
     </div>
@@ -42,9 +42,10 @@
                 </div> -->
 
                 <div class="pull-right">
-                    <a class="btn btn-default" href="/">Cancel</a>
-                    <button type="submit" class="btn btn-primary">Add Product</button>
-                    <button type="submit" class="btn btn-primary">Update Product</button>
+                    <a class="btn btn-default" href="/viewproducts">Cancel</a>
+                    <button type="submit" class="btn btn-primary" ng-click="addProduct();" ng-show="insert">Add Product</button>
+                    <button type="submit" class="btn btn-primary" ng-click="updateProduct();" ng-show="update">Update Product</button>
+                    <button type="submit" class="btn btn-danger" ng-click="deleteProduct();" ng-show="delete">Delete Product</button>
                 </div>
 
             </form>
@@ -90,10 +91,5 @@
     <p class="text-center" ng-show="loading">
         <span class="fa fa-spinner fa-pulse fa-3x"></span>
     </p>
-
-    <!-- <div class="alert alert-danger" role="alert" ng-show="(!success && !loading)">
-        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-        <span class="sr-only">Error: {{ errorData }}</span>
-    </div> -->
 
 </div>

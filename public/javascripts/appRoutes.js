@@ -76,21 +76,22 @@ angular.module('appRoutes', ['productModule'])
     // IN ORDERS
     //
 
-    // // Add In order
-    // .when('/addinorder', {
-    //     templateUrl: 'partials/addInOrder.html'
-    // })
-    //
+    // Add In order
+    .when('/addinorder', {
+        templateUrl: 'partials/inOrders.html',
+        controller: 'AddInOrderCtrl'
+    })
+
     // // View In Orders
     // .when('/viewinorders', {
     //     templateUrl: 'partials/viewInOrders.html'
     // })
-    //
+
     // // Add Out Order
     // .when('/addoutorder', {
     //     templateUrl: 'partials/addOutOrder.html'
     // })
-    //
+
     // // View Out Orders
     // .when('/viewoutorders', {
     //     templateUrl: 'partials/viewOutOrders.html'

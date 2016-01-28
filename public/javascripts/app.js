@@ -4,5 +4,6 @@ angular.module('manageExpress', [
     'expressManageModule',
     'underConstructionModule',
     'productModule',
-    'customerModule'
+    'customerModule',
+    'inOrderModule'
 ]);
