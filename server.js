@@ -42,6 +42,11 @@ app.use('/users', users);
 app.use('/api/product', products);
 app.use('/api/customer', customers);
 
+// To avoid 404 if hard refreshed from partial url
+app.all('*', function(req, res) {
+  res.redirect('/');
+});
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');

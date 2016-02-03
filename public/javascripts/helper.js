@@ -321,6 +321,11 @@ $(document).ready(function () {
 // ========================================
 // Helper JS methods for partials and views
 // ========================================
+$(document).ready(function() {
+    // Initialize datepicker
+    $(".datePicker").datepicker();
+});
+
 
 //
 // Mark input fields disabled in delete mode

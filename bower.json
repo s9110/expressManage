@@ -25,6 +25,7 @@
     "font-awesome-animation": "~0.0.8",
     "jquery.nicescroll": "jquery-nicescroll#~3.6.6",
     "animate.css": "~3.5.1",
-    "angular-resource": "~1.4.8"
+    "angular-resource": "~1.4.8",
+    "bootstrap-datepicker": "~1.5.1"
   }
 }
