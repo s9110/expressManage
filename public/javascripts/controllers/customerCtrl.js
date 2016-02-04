@@ -43,15 +43,18 @@ customerModule.controller('GetCustomersCtrl', ['$scope', '$http', 'customerFacto
     }
 ]);
 
-customerModule.controller('SaveCustomerCtrl', ['$scope', '$http', 'customerFactory',
+customerModule.controller('AddCustomerCtrl', ['$scope', '$http', 'customerFactory',
     function($scope, $http, customerFactory) {
-        console.log('..SaveCustomerCtrl');
+        console.log('..AddCustomerCtrl');
+
+        // Page UI values
+        $scope.headerTitle = 'Add Customer';
+        $scope.message = '';
 
         // Objects
         $scope.customer = {};
         $scope.successCustomer = {};
         $scope.errorData = {};
-
 
         // Arrays
         $scope.customers = [];
@@ -59,6 +62,7 @@ customerModule.controller('SaveCustomerCtrl', ['$scope', '$http', 'customerFacto
         // Booleans
         $scope.loading = false;
         $scope.success = false;
+        $scope.insert = true;
 
         $scope.addCustomer = function() {
             console.log('..$scope.addCustomer');
@@ -89,6 +93,10 @@ customerModule.controller('EditCustomerCtrl', ['$scope', '$location', '$routePar
     function($scope, $location, $routeParams, customerFactory) {
         console.log('..customerFactory');
         console.log('..customerFactory -> $routeParams.id: ' + $routeParams.id);
+
+        // Page UI values
+        $scope.headerTitle = 'Edit Customer';
+        $scope.message = '';
 
         // Objects
         $scope.customer = {};
@@ -141,6 +149,13 @@ customerModule.controller('DeleteCustomerCtrl', ['$scope', '$location', '$routeP
         console.log('..DeleteCustomerCtrl');
         console.log('..DeleteCustomerCtrl -> $routeParams.id: ' + $routeParams.id);
 
+        // Mark form fields disabled
+        markDisableInDelete();
+
+        // Page UI values
+        $scope.headerTitle = 'Delete Customer';
+        $scope.message = 'Are you sure you want to delete this customer?';
+
         // Objects
         $scope.customer = {};
         $scope.errorData = {};
@@ -148,6 +163,7 @@ customerModule.controller('DeleteCustomerCtrl', ['$scope', '$location', '$routeP
         // Booleans
         $scope.loading = true;
         $scope.success = false;
+        $scope.delete = true;
 
         var Customers = customerFactory.delete();
 

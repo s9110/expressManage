@@ -5,7 +5,7 @@ angular.module('appRoutes', ['productModule'])
     $routeProvider
 
     // home page
-    .when('/', {
+        .when('/', {
         templateUrl: 'partials/dashboard.html',
         controller: 'ExpressManageInitCtrl'
     })
@@ -16,74 +16,86 @@ angular.module('appRoutes', ['productModule'])
         controller: 'UnderConstructionCtrl'
     })
 
+    //
+    // PRODUCTS
+    //
+
     // Add Product
     .when('/addproduct', {
-        templateUrl: 'partials/addProduct.html',
+        templateUrl: 'partials/products.html',
         controller: 'AddProductCtrl'
-    })
-
-    // View Products
-    .when('/viewproducts', {
-        templateUrl: 'partials/viewProducts.html',
-        controller: 'GetProductsCtrl'
     })
 
     // Edit Product
     .when('/product/:id', {
-        templateUrl: 'partials/addProduct.html',
-
+        templateUrl: 'partials/products.html',
         controller: 'EditProductCtrl'
     })
 
     // Delete Product
     .when('/product/delete/:id', {
-        templateUrl: 'partials/deleteProduct.html',
+        templateUrl: 'partials/products.html',
         controller: 'DeleteProductCtrl'
     })
 
-    // Add Customer
-    .when('/addcustomer', {
-        templateUrl: 'partials/addCustomer.html',
-        controller: 'SaveCustomerCtrl'
+    // View Products
+    .when('/viewproducts', {
+        templateUrl: 'partials/listProducts.html',
+        controller: 'GetProductsCtrl'
     })
 
-    // View Customers
-    .when('/viewcustomers', {
-        templateUrl: 'partials/viewCustomers.html',
-        controller: 'GetCustomersCtrl'
+    //
+    // CUSTOMERS
+    //
+
+    // Add Customer
+    .when('/addcustomer', {
+        templateUrl: 'partials/customers.html',
+        controller: 'AddCustomerCtrl'
     })
 
     // Edit Customer
     .when('/customer/:id', {
-        templateUrl: 'partials/addCustomer.html',
+        templateUrl: 'partials/customers.html',
         controller: 'EditCustomerCtrl'
     })
 
     // Delete Customer
     .when('/customer/delete/:id', {
-        templateUrl: 'partials/deleteCustomer.html',
+        templateUrl: 'partials/customers.html',
         controller: 'DeleteCustomerCtrl'
     })
 
+    // View Customers
+    .when('/viewcustomers', {
+        templateUrl: 'partials/listCustomers.html',
+        controller: 'GetCustomersCtrl'
+    })
+
+    //
+    // IN ORDERS
+    //
+
     // Add In order
     .when('/addinorder', {
-        templateUrl: 'partials/addInOrder.html'
+        templateUrl: 'partials/inOrders.html',
+        controller: 'AddInOrderCtrl'
     })
 
-    // View In Orders
-    .when('/viewinorders', {
-        templateUrl: 'partials/viewInOrders.html'
-    })
+    // // View In Orders
+    // .when('/viewinorders', {
+    //     templateUrl: 'partials/viewInOrders.html'
+    // })
 
-    // Add Out Order
-    .when('/addoutorder', {
-        templateUrl: 'partials/addOutOrder.html'
-    })
+    // // Add Out Order
+    // .when('/addoutorder', {
+    //     templateUrl: 'partials/addOutOrder.html'
+    // })
 
-    // View Out Orders
-    .when('/viewoutorders', {
-        templateUrl: 'partials/viewOutOrders.html'
-    })
+    // // View Out Orders
+    // .when('/viewoutorders', {
+    //     templateUrl: 'partials/viewOutOrders.html'
+    // })
 
 
     // default redirection

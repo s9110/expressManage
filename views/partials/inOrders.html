@@ -1,0 +1,85 @@
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                <i class="fa fa-sign-in"></i> {{ headerTitle }}
+            </h1>
+        </div>
+    </div>
+
+    <div class="row" ng-hide="loading">
+        <div class="col-md-6 col-md-offset-3">
+            <form>
+
+                <div class="form-group">
+                    <label for="lotNumber">Lot Number: </label>
+                    <input type="number" class="form-control" id="lotNumber" ng-model="order.lotNumber">
+                    <!-- <p class="form-control-static">{{ order.lotNumber }}</p> -->
+                </div>
+
+                <div class="form-group">
+                    <label for="orderInDate">In Date: </label>
+                    <div class="input-group date">
+                        <input id="orderInDate" type="text" class="form-control" placeholder="DD/MM/YYYY" ng-model="order.inDate">
+                        <span class="input-group-addon">
+                            <i class="fa fa-calendar-o"></i>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="customerName">Customer Name: </label>
+                    <input id="customerName" type="text" class="form-control customerName-control" placeholder="Enter customer name here..." ng-model="order.customerName">
+                </div>
+
+                <div class="form-group">
+                    <label for="orderDetailsTable">Order Details: </label>
+                    <div class="table-responsive" id="orderDetailsTable">
+                        <table class="table table-bordered table-hover table-striped table-responsive" ng-hide="loading">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Rate Per Month</th>
+                                    <th>Container Type</th>
+                                    <th>Quantity</th>
+                                    <th>Discount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>TEST</td>
+                                    <td>TEST</td>
+                                    <td>TEST</td>
+                                    <td>TEST</td>
+                                    <td>TEST</td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="5">
+                                        <div class="pull-right">
+                                            <button type="submit" class="btn btn-sm btn-primary" ng-click="addProduct();" ng-show="insert">Add More</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="pull-right">
+                    <a class="btn btn-default" href="/viewinorders">Cancel</a>
+                    <button type="submit" class="btn btn-primary" ng-click="addProduct();" ng-show="insert">Add In Order</button>
+                    <button type="submit" class="btn btn-primary" ng-click="updateProduct();" ng-show="update">Update In Order</button>
+                    <button type="submit" class="btn btn-danger" ng-click="deleteProduct();" ng-show="delete">Delete In Order</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <p class="text-center" ng-show="loading">
+        <span class="fa fa-spinner fa-pulse fa-3x"></span>
+    </p>
+
+</div>
