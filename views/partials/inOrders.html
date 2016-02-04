@@ -13,77 +13,69 @@
             <form>
 
                 <div class="form-group">
-                    <div class="form-group has-feedback">
-                        <label for="orderDate">Date From Advanced Forms: </label>
-                        <input type="text" class="form-control has-feedback-right" id="orderDate" placeholder="MM/DD/YYYY">
-                        <span class="fa fa-calendar-o form-control-feedback right" aria-hidden="true"></span>
-                        <!-- <span id="inputSuccess2Status" class="sr-only">(success)</span> -->
+                    <label for="lotNumber">Lot Number: </label>
+                    <input type="number" class="form-control" id="lotNumber" ng-model="order.lotNumber">
+                    <!-- <p class="form-control-static">{{ order.lotNumber }}</p> -->
+                </div>
+
+                <div class="form-group">
+                    <label for="orderInDate">In Date: </label>
+                    <div class="input-group date">
+                        <input id="orderInDate" type="text" class="form-control" placeholder="DD/MM/YYYY" ng-model="order.inDate">
+                        <span class="input-group-addon">
+                            <i class="fa fa-calendar-o"></i>
+                        </span>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="orderInDate">Date Picker: </label>
-                    <input type="text" class="form-control datePicker" id="orderInDate" placeholder="MM/DD/YYYY">
+                    <label for="customerName">Customer Name: </label>
+                    <input id="customerName" type="text" class="form-control customerName-control" placeholder="Enter customer name here..." ng-model="order.customerName">
                 </div>
 
                 <div class="form-group">
-                    <label for="ratePerMonth">Rate Per Month: </label>
-                    <input type="number" class="form-control" id="ratePerMonth" placeholder="0.00" ng-model="product.ratePerMonth">
-                </div>
-
-                <!-- <div class="form-group">
-                    <label for="containerType">Container Type: </label>
-                    <select class="form-control" id="containerType" ng-model="product.containerType">
-                        <option>Box</option>
-                        <option>Bag</option>
-                    </select>
-                </div> -->
-
-                <div class="pull-right">
-                    <a class="btn btn-default" href="/viewproducts">Cancel</a>
-                    <button type="submit" class="btn btn-primary" ng-click="addProduct();" ng-show="insert">Add Product</button>
-                    <button type="submit" class="btn btn-primary" ng-click="updateProduct();" ng-show="update">Update Product</button>
-                    <button type="submit" class="btn btn-danger" ng-click="deleteProduct();" ng-show="delete">Delete Product</button>
-                </div>
-
-            </form>
-        </div>
-    </div>
-
-    <br/>
-
-    <div class="row" ng-show="success">
-        <!-- <div class="col-md-8 col-md-offset-2">
-
-            <div class="panel panel-success">
-                <div class="panel-heading">
-                    <button type="button" class="close close-new-saved pull-right" aria-label="Close" onClick="hideSuccessSavePanel();">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h3 class="panel-title">{{ successProduct.name }}</h3>
-                </div>
-                <div class="panel-body">
-                    <div class="table-responsive">
+                    <label for="orderDetailsTable">Order Details: </label>
+                    <div class="table-responsive" id="orderDetailsTable">
                         <table class="table table-bordered table-hover table-striped table-responsive" ng-hide="loading">
                             <thead>
                                 <tr>
                                     <th>Name</th>
                                     <th>Rate Per Month</th>
                                     <th>Container Type</th>
+                                    <th>Quantity</th>
+                                    <th>Discount</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>{{ successProduct.name }}</td>
-                                    <td>{{ successProduct.ratePerMonth }}</td>
-                                    <td>{{ successProduct.containerType }}</td>
+                                    <td>TEST</td>
+                                    <td>TEST</td>
+                                    <td>TEST</td>
+                                    <td>TEST</td>
+                                    <td>TEST</td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="5">
+                                        <div class="pull-right">
+                                            <button type="submit" class="btn btn-sm btn-primary" ng-click="addProduct();" ng-show="insert">Add More</button>
+                                        </div>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
-            </div>
-        </div> -->
+
+                <div class="pull-right">
+                    <a class="btn btn-default" href="/viewinorders">Cancel</a>
+                    <button type="submit" class="btn btn-primary" ng-click="addProduct();" ng-show="insert">Add In Order</button>
+                    <button type="submit" class="btn btn-primary" ng-click="updateProduct();" ng-show="update">Update In Order</button>
+                    <button type="submit" class="btn btn-danger" ng-click="deleteProduct();" ng-show="delete">Delete In Order</button>
+                </div>
+
+            </form>
+        </div>
     </div>
 
     <p class="text-center" ng-show="loading">

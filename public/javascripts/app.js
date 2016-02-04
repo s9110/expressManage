@@ -1,4 +1,6 @@
-angular.module('manageExpress', [
+'use strict';
+
+var exppressManageApp = angular.module('manageExpress', [
     'ngRoute',
     'appRoutes',
     'expressManageModule',
@@ -7,3 +9,6 @@ angular.module('manageExpress', [
     'customerModule',
     'inOrderModule'
 ]);
+
+// Configure lodash
+exppressManageApp.constant('_', window._);

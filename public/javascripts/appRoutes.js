@@ -68,7 +68,7 @@ angular.module('appRoutes', ['productModule'])
 
     // View Customers
     .when('/viewcustomers', {
-        templateUrl: 'partials/viewCustomers.html',
+        templateUrl: 'partials/listCustomers.html',
         controller: 'GetCustomersCtrl'
     })
 
