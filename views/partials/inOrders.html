@@ -39,7 +39,7 @@
                         <table class="table table-bordered table-hover table-striped table-responsive" ng-hide="loading">
                             <thead>
                                 <tr>
-                                    <th>Name</th>
+                                    <th>Product Name</th>
                                     <th>Rate Per Month</th>
                                     <th>Container Type</th>
                                     <th>Quantity</th>
@@ -47,18 +47,36 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>TEST</td>
-                                    <td>TEST</td>
-                                    <td>TEST</td>
-                                    <td>TEST</td>
-                                    <td>TEST</td>
+                                <tr class="tempClass">
+                                    <td>
+                                        <select class="form-control" ng-model="selectedProduct.name" ng-change="getSelectedProductDetails();">
+                                            <option ng-repeat="productOption in products">
+                                                {{ productOption.name }}
+                                            </option>
+                                        </select>
+                                    </td>
+
+                                    <td>
+                                        <p class="form-control-static">{{ product.ratePerMonth }}</p>
+                                    </td>
+
+                                    <td>
+                                        <p class="form-control-static">{{ product.containerType }}</p>
+                                    </td>
+
+                                    <td>
+                                        <input id="productQuantity" type="number" class="form-control">
+                                    </td>
+
+                                    <td>
+                                        <input id="discount" type="number" class="form-control">
+                                    </td>
                                 </tr>
 
                                 <tr>
                                     <td colspan="5">
                                         <div class="pull-right">
-                                            <button type="submit" class="btn btn-sm btn-primary" ng-click="addProduct();" ng-show="insert">Add More</button>
+                                            <button type="submit" class="btn btn-xs btn-primary" ng-show="insert">Add More</button>
                                         </div>
                                     </td>
                                 </tr>

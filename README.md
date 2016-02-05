@@ -2,7 +2,6 @@
 App scaffold by express-generator which uses ejs template engine.
 
 # TODO
-- Use existing controller methods instead of writting again
 - Change lot number type to p on in order detail page
 - Autocomplete search support for products and customers
 - Use Moment js from bower

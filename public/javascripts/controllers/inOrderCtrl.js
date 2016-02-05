@@ -12,7 +12,8 @@ inOrderModule.controller('AddInOrderCtrl', ['$scope', '$http', 'productFactory',
 
         // Objects
         $scope.order = {};
-        $scope.errorData = {};
+        $scope.product = {};
+        $scope.selectedProduct = {};
 
         // Arrays
         $scope.products = [];
@@ -30,7 +31,6 @@ inOrderModule.controller('AddInOrderCtrl', ['$scope', '$http', 'productFactory',
             customerFactory.get()
                 .success(function(data) {
                     $scope.loading = false;
-                    $scope.success = true;
                     $scope.customers = data;
 
                     // initialize customer name autocomplete
@@ -40,34 +40,48 @@ inOrderModule.controller('AddInOrderCtrl', ['$scope', '$http', 'productFactory',
             // More error handling code to be added
             .error(function(data) {
                 $scope.loading = false;
-                $scope.success = false;
                 $scope.errorData = data;
-
                 console.log('..error data: ', data);
             })
         }
 
-        // $scope.getProducts = function() {
-        //     console.log('..$scope.getProducts');
-        //     $scope.loading = true;
-        //
-        //     productFactory.get()
-        //         .success(function(data) {
-        //             $scope.loading = false;
-        //             $scope.success = true;
-        //             $scope.products = data;
-        //         })
-        //
-        //     // More error handling code to be added
-        //     .error(function(data) {
-        //         $scope.loading = false;
-        //         $scope.success = false;
-        //         console.log('..error data: ', data);
-        //     })
-        // }
+        $scope.getProducts = function() {
+            console.log('..$scope.getProducts');
+            $scope.loading = true;
+
+            productFactory.get()
+                .success(function(data) {
+                    $scope.loading = false;
+                    $scope.products = data;
+                })
+
+            // More error handling code to be added
+            .error(function(data) {
+                $scope.loading = false;
+                console.log('..error data: ', data);
+            })
+        }
+
+        $scope.getSelectedProductDetails = function() {
+            console.log('..$scope.getSelectedProductDetails');
+
+            _.forEach($scope.products, function(value, key) {
+                if (_.get(value, 'name') === $scope.selectedProduct.name) {
+                    $scope.product = value;
+                    $scope.selectedProduct = {};
+                    return false;
+                } else {
+                    $scope.product = {};
+                    return true;
+                }
+            });
+        }
 
         // Call to get all customers
         $scope.getCustomers();
+
+        // Call to get all product details
+        $scope.getProducts();
 
     }
 ]);
