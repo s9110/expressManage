@@ -1,3 +1,10 @@
+<style>
+    .margin-top {
+        margin-bottom: 0px !important;
+        margin-top: 5px;
+    }
+</style>
+
 <div class="container-fluid">
 
     <div class="row">
@@ -9,7 +16,7 @@
     </div>
 
     <div class="row" ng-hide="loading">
-        <div class="col-md-6 col-md-offset-3">
+        <div class="col-md-8 col-md-offset-2">
             <form>
 
                 <div class="form-group">
@@ -44,12 +51,35 @@
                                     <th>Container Type</th>
                                     <th>Quantity</th>
                                     <th>Discount</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="tempClass">
+                                <tr ng-repeat="orderProduct in orderProducts">
                                     <td>
-                                        <select class="form-control" ng-model="selectedProduct.name" ng-change="getSelectedProductDetails();">
+                                        <p class="form-control-static">{{ orderProduct.name }}</p>
+                                    </td>
+                                    <td>
+                                        <p class="form-control-static">{{ orderProduct.ratePerMonth }}</p>
+                                    </td>
+                                    <td>
+                                        <p class="form-control-static">{{ orderProduct.containerType }}</p>
+                                    </td>
+                                    <td>
+                                        <p class="form-control-static">{{ orderProduct.quantity }}</p>
+                                    </td>
+                                    <td>
+                                        <p class="form-control-static">{{ orderProduct.discount }}</p>
+                                    </td>
+                                    <td>
+                                        <button type="submit" class="fa fa-edit btn btn-xs btn-warning margin-top" ng-click="editOrderDetailRow($index);"> Edit</button>
+                                        <button type="submit" class="fa fa-trash btn btn-xs btn-danger margin-top" ng-click="removeOrderDetailRow($index);"> Remove</button>
+                                    </td>
+                                </tr>
+
+                                <tr class="new-order-detail" ng-show="orderProductsEmpty">
+                                    <td>
+                                        <select class="form-control" ng-model="rawOrderProduct.name" ng-change="getSelectedProductDetails();">
                                             <option ng-repeat="productOption in products">
                                                 {{ productOption.name }}
                                             </option>
@@ -65,21 +95,18 @@
                                     </td>
 
                                     <td>
-                                        <input id="productQuantity" type="number" class="form-control">
+                                        <input id="productQuantity" type="number" class="form-control" ng-model="product.quantity">
                                     </td>
 
                                     <td>
-                                        <input id="discount" type="number" class="form-control">
+                                        <input id="discount" type="number" class="form-control" ng-model="product.discount">
+                                    </td>
+
+                                    <td>
+                                        <button type="submit" class="btn btn-xs btn-primary margin-top" ng-click="addNewOrderDetailRow();">Add to Order</button>
                                     </td>
                                 </tr>
 
-                                <tr>
-                                    <td colspan="5">
-                                        <div class="pull-right">
-                                            <button type="submit" class="btn btn-xs btn-primary" ng-show="insert">Add More</button>
-                                        </div>
-                                    </td>
-                                </tr>
                             </tbody>
                         </table>
                     </div>

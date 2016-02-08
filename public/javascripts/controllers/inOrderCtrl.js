@@ -13,16 +13,18 @@ inOrderModule.controller('AddInOrderCtrl', ['$scope', '$http', 'productFactory',
         // Objects
         $scope.order = {};
         $scope.product = {};
-        $scope.selectedProduct = {};
+        $scope.rawOrderProduct = {};
 
         // Arrays
         $scope.products = [];
+        $scope.orderProducts = [];
         $scope.customers = [];
 
         // Booleans
         $scope.loading = false;
         $scope.success = false;
         $scope.insert = true;
+        $scope.orderProductsEmpty;
 
         $scope.getCustomers = function() {
             console.log('..$scope.getCustomers');
@@ -66,9 +68,9 @@ inOrderModule.controller('AddInOrderCtrl', ['$scope', '$http', 'productFactory',
             console.log('..$scope.getSelectedProductDetails');
 
             _.forEach($scope.products, function(value, key) {
-                if (_.get(value, 'name') === $scope.selectedProduct.name) {
+                if (_.get(value, 'name') === $scope.rawOrderProduct.name) {
                     $scope.product = value;
-                    $scope.selectedProduct = {};
+                    // #TODO: Remove it from array to avoid duplication
                     return false;
                 } else {
                     $scope.product = {};
@@ -77,11 +79,59 @@ inOrderModule.controller('AddInOrderCtrl', ['$scope', '$http', 'productFactory',
             });
         }
 
+        $scope.addNewOrderDetailRow = function() {
+            console.log('..addNewOrderDetailRow');
+
+            // if orderProducts array is blank, add new standard product
+            if ($scope.orderProducts.length === 0) {
+                $scope.orderProductsEmpty = true;
+            }
+
+            // push rawOrderProduct to orderProducts array
+            if(_.values($scope.product).length > 0) {
+                $scope.orderProducts.push($scope.product);
+                $scope.product = {};
+                $scope.rawOrderProduct = {};
+            }
+        }
+
+        $scope.editOrderDetailRow = function(index) {
+            console.log('..editOrderDetailRow');
+
+            if(index != null && index != '') {
+                // this thing is not working yet
+                $scope.rawOrderProduct.name = $scope.orderProducts[index].name;
+                console.log('... $scope.orderProducts[index].name : ', $scope.orderProducts[index].name);
+
+                // Get element from array
+                $scope.product = $scope.orderProducts[index];
+                // Remove it from array so that to be saved after edit
+                $scope.removeOrderDetailRow(index);
+            }
+        }
+
+        $scope.removeOrderDetailRow = function(index) {
+            console.log('..removeOrderDetailRow');
+
+            if(index != null && index != '') {
+                $scope.orderProducts.splice(index, 1);
+            }
+            // #TODO: Logic to remove 0th element
+
+            console.log('..after removal $scope.orderProducts: ', $scope.orderProducts);
+        }
+
+
+        //
+        // Methods to call on controller load
+        //
         // Call to get all customers
         $scope.getCustomers();
 
         // Call to get all product details
         $scope.getProducts();
 
+        // initialize order detail table
+        $scope.addNewOrderDetailRow();
     }
 ]);

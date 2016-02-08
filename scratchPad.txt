@@ -1,0 +1,201 @@
+{
+    "lotNumber": 0,
+    "inDate": "test",
+    "customerName": "testCustomer",
+    "details": [{
+        "name": "testProduct"
+    }]
+};
+
+
+var orderProduct = {
+    "name": "test",
+    "ratePerMonth": 10,
+    "containerType": "BoxTest",
+    "quantity": 10,
+    "discount": 0
+};
+
+<div class="table-responsive" id="orderDetailsTable">
+    <table class="table table-bordered table-hover table-striped table-responsive" ng-hide="loading">
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Rate Per Month</th>
+                <th>Container Type</th>
+                <th>Quantity</th>
+                <th>Discount</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="orderProduct in orderProducts">
+                <td>
+                    <p class="form-control-static">{{ orderProduct.name }}</p>
+                </td>
+                <td>
+                    <p class="form-control-static">{{ orderProduct.ratePerMonth }}</p>
+                </td>
+                <td>
+                    <p class="form-control-static">{{ orderProduct.containerType }}</p>
+                </td>
+                <td>
+                    <p class="form-control-static">{{ orderProduct.quantity }}</p>
+                </td>
+                <td>
+                    <p class="form-control-static">{{ orderProduct.dicount }}</p>
+                </td>
+                <td>
+                    <a href="#"><i class="fa fa-fw fa-edit"></i> Edit</a>
+                    <b>|</b>
+                    <a href="#"><i class="fa fa-fw fa-trash"></i> Remove</a>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <table class="table table-bordered table-hover table-striped table-responsive" ng-hide="loading">
+                        <thead>
+                            <tr>
+                                <th>Product Name</th>
+                                <th>Quantity</th>
+                                <th>Discount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <select class="form-control" ng-model="productOption.name" ng-change="getSelectedProductDetails();">
+                                        <option ng-repeat="productOption in products">
+                                            {{ productOption.name }}
+                                        </option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <input id="productQuantity" type="number" class="form-control">
+                                </td>
+                                <td>
+                                    <input id="discount" type="number" class="form-control">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="6">
+                                    <div class="pull-right">
+                                        <button type="submit" class="btn btn-xs btn-primary">Add to Order</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<td>
+    <select class="form-control" ng-model="productOption.name" ng-change="getSelectedProductDetails();">
+        <option ng-repeat="productOption in products">
+            {{ productOption.name }}
+        </option>
+    </select>
+</td>
+
+<td>
+    <input id="productQuantity" type="number" class="form-control">
+</td>
+
+<td>
+    <input id="discount" type="number" class="form-control">
+</td>
+
+    <!-- template -->
+    <script type="text/html" id="template_orderDetailRow">
+        <table>
+            <tr>
+                <td>index</td>
+                <td>username</td>
+            </tr>
+            <!-- for loop -->
+            <% for (var i in data) {%>
+                <!-- display index and username -->
+                <tr>
+                    <td>
+                        <%= i %>
+                    </td>
+                    <td>
+                        <%= data[i] %>
+                    </td>
+                </tr>
+                <% } %>
+        </table>
+    </script>
+
+
+
+
+    // Products Table Angular App
+    angular.module('productsTableApp', [])
+
+    // create a controller for the table
+    .controller('ProductsController', function($scope){
+      // initialize the array
+      $scope.data=[[{"en":"test"}]
+                   ,[{"en":"test1"}]
+                   ,[{"en":"test2"}]
+                   ,[{"en":"test3"}]
+                   ,[{"en":"test4"}]];
+
+        // add a column
+      $scope.addColumn = function(){
+        //you must cycle all the rows and add a column
+        //to each one
+        $scope.data.forEach(function($row){
+          $row.push({"en":"test test"})
+        });
+      };
+
+      // remove the selected column
+      $scope.removeColumn = function (index) {
+        // remove the column specified in index
+        // you must cycle all the rows and remove the item
+        // row by row
+        $scope.data.forEach(function (row) {
+          row.splice(index, 1);
+
+          //if no columns left in the row push a blank array
+          if (row.length === 0) {
+            row.data = [];
+          }
+        });
+      };
+
+      // remove the selected row
+      $scope.removeRow = function(index){
+        // remove the row specified in index
+        $scope.data.splice( index, 1);
+        // if no rows left in the array create a blank array
+        if ($scope.data.length() === 0){
+          $scope.data = [];
+        }
+      };
+
+      //add a row in the array
+      $scope.addRow = function(){
+        // create a blank array
+        var newrow = [];
+
+          // if array is blank add a standard item
+          if ($scope.data.length === 0) {
+            newrow = [{'en':'rwe rws'}];
+          } else {
+            // else cycle thru the first row's columns
+            // and add the same number of items
+            $scope.data[0].forEach(function (row) {
+              newrow.push({'en':'test test'});
+            });
+          }
+        // add the new row at the end of the array
+        $scope.data.push(newrow);
+      };
+    });
