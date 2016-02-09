@@ -19,19 +19,21 @@
         <div class="col-md-8 col-md-offset-2">
             <form>
 
-                <div class="form-group">
-                    <label for="lotNumber">Lot Number: </label>
-                    <input type="number" class="form-control" id="lotNumber" ng-model="order.lotNumber">
-                    <!-- <p class="form-control-static">{{ order.lotNumber }}</p> -->
-                </div>
+                <div class="row">
+                    <div class="form-group col-xs-6">
+                        <label for="lotNumber">Lot Number: </label>
+                        <!-- <input type="number" class="form-control" id="lotNumber" ng-model="order.lotNumber"> -->
+                        <p class="form-control-static" id="lotNumber"><b>{{ order.lotNumber }}</b></p>
+                    </div>
 
-                <div class="form-group">
-                    <label for="orderInDate">In Date: </label>
-                    <div class="input-group date">
-                        <input id="orderInDate" type="text" class="form-control" placeholder="DD/MM/YYYY" ng-model="order.inDate">
-                        <span class="input-group-addon">
+                    <div class="form-group col-xs-6">
+                        <label for="orderInDate">In Date: </label>
+                        <div class="input-group date">
+                            <input id="orderInDate" type="text" class="form-control" placeholder="DD/MM/YYYY" ng-model="order.inDate">
+                            <span class="input-group-addon">
                             <i class="fa fa-calendar-o"></i>
                         </span>
+                        </div>
                     </div>
                 </div>
 
@@ -55,7 +57,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr ng-repeat="orderProduct in orderProducts">
+                                <tr ng-repeat="orderProduct in order.orderProducts">
                                     <td>
                                         <p class="form-control-static">{{ orderProduct.name }}</p>
                                     </td>
@@ -77,13 +79,14 @@
                                     </td>
                                 </tr>
 
-                                <tr class="new-order-detail" ng-show="orderProductsEmpty">
+                                <tr class="new-order-detail">
                                     <td>
-                                        <select class="form-control" ng-model="rawOrderProduct.name" ng-change="getSelectedProductDetails();">
+                                        <select class="form-control" ng-model="rawOrderProduct.name" ng-hide="isEditRow" ng-change="getSelectedProductDetails();">
                                             <option ng-repeat="productOption in products">
                                                 {{ productOption.name }}
                                             </option>
                                         </select>
+                                        <p class="form-control-static" ng-show="isEditRow">{{ product.name }}</p>
                                     </td>
 
                                     <td>
@@ -114,7 +117,7 @@
 
                 <div class="pull-right">
                     <a class="btn btn-default" href="/viewinorders">Cancel</a>
-                    <button type="submit" class="btn btn-primary" ng-click="addProduct();" ng-show="insert">Add In Order</button>
+                    <button type="submit" class="btn btn-primary" ng-click="addInOrder();" ng-show="insert">Add In Order</button>
                     <button type="submit" class="btn btn-primary" ng-click="updateProduct();" ng-show="update">Update In Order</button>
                     <button type="submit" class="btn btn-danger" ng-click="deleteProduct();" ng-show="delete">Delete In Order</button>
                 </div>

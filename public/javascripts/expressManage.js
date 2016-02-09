@@ -33,7 +33,14 @@ var initCustomerNameAutocomplete = function(customersJSONList) {
 
     var customerNameElement = $(".customerName-control");
     $(customerNameElement).autocomplete({
-        source: customersNameArray
+        source: customersNameArray,
+        // as browsers don't fire "change" event on autocomplete/autofill
+        // the value does not gets bind with model
+        // thus for work-around, firing change event manually
+        change: function(event) {
+            console.log('..autocomplete field has been changed');
+            $(event.target).trigger('change');
+        }
     });
 };
 

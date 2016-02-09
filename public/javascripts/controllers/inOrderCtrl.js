@@ -1,7 +1,7 @@
-var inOrderModule = angular.module('inOrderModule', ['productService', 'customerService']);
+var inOrderModule = angular.module('inOrderModule', ['productService', 'customerService', 'inOrderService']);
 
-inOrderModule.controller('AddInOrderCtrl', ['$scope', '$http', 'productFactory', 'customerFactory',
-    function($scope, $http, productFactory, customerFactory) {
+inOrderModule.controller('AddInOrderCtrl', ['$scope', '$http', 'productFactory', 'customerFactory', 'inOrderFactory',
+    function($scope, $http, productFactory, customerFactory, inOrderFactory) {
         console.log('..AddInOrderCtrl');
 
         // initialize datepicker
@@ -16,15 +16,33 @@ inOrderModule.controller('AddInOrderCtrl', ['$scope', '$http', 'productFactory',
         $scope.rawOrderProduct = {};
 
         // Arrays
+        $scope.order.orderProducts = [];
         $scope.products = [];
-        $scope.orderProducts = [];
         $scope.customers = [];
 
         // Booleans
         $scope.loading = false;
         $scope.success = false;
         $scope.insert = true;
-        $scope.orderProductsEmpty;
+        $scope.isEditRow = false;
+
+        $scope.getLotNumber = function() {
+            console.log('..$scope.getLotNumber');;
+            $scope.loading = true;
+
+            inOrderFactory.get()
+                .success(function(data) {
+                    $scope.loading = false;
+                    $scope.order.lotNumber = data.length + 1;
+                })
+
+            // More error handling code to be added
+            .error(function(data) {
+                $scope.loading = false;
+                $scope.errorData = data;
+                console.log('..error data: ', data);
+            })
+        }
 
         $scope.getCustomers = function() {
             console.log('..$scope.getCustomers');
@@ -70,8 +88,12 @@ inOrderModule.controller('AddInOrderCtrl', ['$scope', '$http', 'productFactory',
             _.forEach($scope.products, function(value, key) {
                 if (_.get(value, 'name') === $scope.rawOrderProduct.name) {
                     $scope.product = value;
-                    // #TODO: Remove it from array to avoid duplication
+                    $scope.isEditRow = true;
+
+                    // To avoid duplicate addition
+                    $scope.products.splice(key, 1);
                     return false;
+
                 } else {
                     $scope.product = {};
                     return true;
@@ -82,56 +104,83 @@ inOrderModule.controller('AddInOrderCtrl', ['$scope', '$http', 'productFactory',
         $scope.addNewOrderDetailRow = function() {
             console.log('..addNewOrderDetailRow');
 
-            // if orderProducts array is blank, add new standard product
-            if ($scope.orderProducts.length === 0) {
-                $scope.orderProductsEmpty = true;
-            }
+            $scope.isEditRow = false;
 
-            // push rawOrderProduct to orderProducts array
-            if(_.values($scope.product).length > 0) {
-                $scope.orderProducts.push($scope.product);
+            // push rawOrderProduct to order.orderProducts array
+            if (_.values($scope.product).length > 0) {
+                $scope.order.orderProducts.push($scope.product);
                 $scope.product = {};
                 $scope.rawOrderProduct = {};
             }
         }
 
         $scope.editOrderDetailRow = function(index) {
-            console.log('..editOrderDetailRow');
+            console.log('..editOrderDetailRow -> index: ', index);
 
-            if(index != null && index != '') {
-                // this thing is not working yet
-                $scope.rawOrderProduct.name = $scope.orderProducts[index].name;
-                console.log('... $scope.orderProducts[index].name : ', $scope.orderProducts[index].name);
+            $scope.isEditRow = true;
+
+            if (index != null) {
+                $scope.rawOrderProduct.name = $scope.order.orderProducts[index].name;
 
                 // Get element from array
-                $scope.product = $scope.orderProducts[index];
-                // Remove it from array so that to be saved after edit
-                $scope.removeOrderDetailRow(index);
+                $scope.product = $scope.order.orderProducts[index];
+                // Remove it from $scope.order.orderProduct array so that to be saved after edit
+                // $scope.removeOrderDetailRow(index);
+                $scope.order.orderProducts.splice(index, 1)
             }
         }
 
         $scope.removeOrderDetailRow = function(index) {
-            console.log('..removeOrderDetailRow');
+            console.log('..removeOrderDetailRow -> index: ', index);
 
-            if(index != null && index != '') {
-                $scope.orderProducts.splice(index, 1);
+            if (index != null) {
+                var splicedArray = $scope.order.orderProducts.splice(index, 1);
+
+                // Add this element back to available options
+                var arrayElement = splicedArray[0];
+                arrayElement.quantity = '';
+                arrayElement.discount = '';
+                $scope.products.push(arrayElement);
             }
-            // #TODO: Logic to remove 0th element
-
-            console.log('..after removal $scope.orderProducts: ', $scope.orderProducts);
         }
 
+        $scope.addInOrder = function() {
+            console.log('..$scope.addInOrder');
+            $scope.loading = true;
+
+            inOrderFactory.create($scope.order)
+                .success(function(data) {
+                    $scope.loading = false;
+                    $scope.success = true;
+                    $scope.successOrder = data;
+                    $scope.order = {};
+                    $scope.init();
+                })
+
+            // More error handling code to be added
+            .error(function(data) {
+                $scope.loading = false;
+                $scope.success = false;
+                console.log('..error data: ', data);
+            })
+        }
+
+        $scope.init = function() {
+            console.log('..init');
+            // Call to get lot number
+            $scope.getLotNumber();
+            // Call to get all customers
+            $scope.getCustomers();
+            // Call to get all product details
+            $scope.getProducts();
+            // initialize order detail table
+            $scope.addNewOrderDetailRow();
+        }
 
         //
         // Methods to call on controller load
         //
-        // Call to get all customers
-        $scope.getCustomers();
+        $scope.init();
 
-        // Call to get all product details
-        $scope.getProducts();
-
-        // initialize order detail table
-        $scope.addNewOrderDetailRow();
     }
 ]);
