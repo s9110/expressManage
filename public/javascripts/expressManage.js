@@ -45,6 +45,16 @@ var initCustomerNameAutocomplete = function(customersJSONList) {
 };
 
 //
+// Mark input fields disabled post success order creation
+var disableInputInOrderSuccess = function() {
+    console.log('..disableInputInOrderSuccess');
+    var formElements = $(".post-success-disabled");
+    formElements.attr("disabled", "disabled");
+
+    return true;
+}
+
+//
 // Mark input fields disabled in delete mode
 //
 var markDisableInDelete = function() {

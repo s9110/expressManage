@@ -152,9 +152,10 @@ inOrderModule.controller('AddInOrderCtrl', ['$scope', '$http', 'productFactory',
                 .success(function(data) {
                     $scope.loading = false;
                     $scope.success = true;
-                    $scope.successOrder = data;
-                    $scope.order = {};
-                    $scope.init();
+                    // $scope.successOrder = data;
+                    // $scope.order = {};
+                    // $scope.init();
+                    disableInputInOrderSuccess();
                 })
 
             // More error handling code to be added
