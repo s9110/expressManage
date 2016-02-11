@@ -13,6 +13,20 @@ inOrderService.factory('inOrderFactory', ['$http', '$resource',
             return $http.post('/api/inorder', inOrder);
         }
 
+        inOrderFactory.update = function() {
+            return $resource('/api/inorder/:id', {
+                id: '@_id'
+            }, {
+                update: {
+                    method: 'PUT'
+                }
+            });
+        }
+
+        inOrderFactory.delete = function() {
+            return $resource('/api/inorder/:id');
+        }
+
         return inOrderFactory;
 
     }

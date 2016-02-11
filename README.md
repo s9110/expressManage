@@ -2,6 +2,7 @@
 App scaffold by express-generator which uses ejs template engine.
 
 # TODO
+- Lot number ka logic ghalat hoga.. agar koi beech se delete ho jaye to phir lot number duplicate ho jayega.. change it.
 - Use Moment js from bower
 - Include angular datatables
 - Form validation (use parsley)

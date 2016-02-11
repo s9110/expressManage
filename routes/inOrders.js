@@ -31,4 +31,45 @@ router.post('/', function(req, res) {
     });
 });
 
+// Get single existing inOrder
+router.get('/:id', function(req, res) {
+    var collection = database.get('inorders');
+    collection.findOne({
+        _id: req.params.id
+    }, function(err, inOrder) {
+        if (err) throw err;
+
+        res.json(inOrder);
+    });
+});
+
+// Update single existing inOrder
+router.put('/:id', function(req, res) {
+    var collection = database.get('inorders');
+    collection.update({
+        _id: req.params.id
+    }, {
+        lotNumber: req.body.lotNumber,
+        inDate: req.body.inDate,
+        customerName: req.body.customerName,
+        orderProducts: req.body.orderProducts
+    }, function(err, inOrder) {
+        if(err) throw err;
+
+        res.json(inOrder);
+    });
+});
+
+// Delete existing inOrder
+router.delete('/:id', function(req, res) {
+    var collection = database.get('inorders');
+    collection.remove({
+        _id: req.params.id
+    }, function(err, inOrder) {
+        if (err) throw err;
+
+        res.json(inOrder);
+    });
+});
+
 module.exports = router;

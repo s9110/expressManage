@@ -28,7 +28,7 @@
                     <div class="form-group col-xs-6">
                         <label for="orderInDate">In Date: </label>
                         <div class="input-group date">
-                            <input id="orderInDate" type="text" class="form-control post-success-disabled" placeholder="DD/MM/YYYY" ng-model="order.inDate">
+                            <input id="orderInDate" type="text" class="form-control post-success-disabled delete-mode-disabled" placeholder="DD/MM/YYYY" ng-model="order.inDate">
                             <span class="input-group-addon">
                             <i class="fa fa-calendar-o"></i>
                         </span>
@@ -38,7 +38,7 @@
 
                 <div class="form-group">
                     <label for="customerName">Customer Name: </label>
-                    <input id="customerName" type="text" class="form-control customerName-control post-success-disabled" placeholder="Enter customer name here..." ng-model="order.customerName">
+                    <input id="customerName" type="text" class="form-control customerName-control post-success-disabled delete-mode-disabled" placeholder="Enter customer name here..." ng-model="order.customerName">
                 </div>
 
                 <div class="form-group">
@@ -116,11 +116,11 @@
 
                 <div class="pull-right">
                     <a class="btn btn-default" href="/viewinorders">Cancel</a>
-                    <button type="submit" class="btn btn-primary" ng-click="addInOrder();" ng-show="insert" ng-hide="success">Add In Order</button>
-                    <button type="submit" class="btn btn-primary" ng-click="updateProduct();" ng-show="update">Update In Order</button>
-                    <button type="submit" class="btn btn-danger" ng-click="deleteProduct();" ng-show="delete">Delete In Order</button>
-
-                    <button type="submit" class="btn btn-primary" ng-click="deleteProduct();" ng-show="success">Generate Recipt</button>
+                    <!-- ng-hide="success" -->
+                    <button type="submit" class="btn btn-primary" ng-click="addInOrder();" ng-show="insert && !success">Add In Order</button>
+                    <button type="submit" class="btn btn-primary" ng-click="updateInOrder();" ng-show="update && !success">Update In Order</button>
+                    <button type="submit" class="btn btn-danger" ng-click="deleteInOrder();" ng-show="delete">Delete In Order</button>
+                    <button type="submit" class="btn btn-primary" ng-show="(insert || update) && success">Generate Recipt</button>
                 </div>
 
             </form>
