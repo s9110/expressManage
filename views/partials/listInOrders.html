@@ -1,0 +1,50 @@
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                <i class="fa fa-sign-in"></i> In Orders
+            </h1>
+        </div>
+    </div>
+
+    <p class="text-center" ng-show="loading">
+        <span class="fa fa-spinner fa-pulse fa-3x"></span>
+    </p>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover table-striped table-responsive" ng-hide="loading">
+            <thead>
+                <tr>
+                    <th>Lot Number</th>
+                    <th>In Date</th>
+                    <th>Customer Name</th>
+                    <th>Order Products</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="inOrder in inOrders">
+                    <td>{{ inOrder.lotNumber }}</td>
+                    <td>{{ inOrder.inDate }}</td>
+                    <td>{{ inOrder.customerName }}</td>
+                    <td>
+                        <div ng-repeat="orderProduct in inOrder.orderProducts">
+                            <ul>
+                                <li>{{ orderProduct.name }}</li>
+                            </ul>
+                        </div>
+                    </td>
+                    <td>
+                        <a href="/inorder/detail/{{ inOrder._id }}"><i class="fa fa-fw fa-search"></i> Details</a>
+                        <b>|</b>
+                        <a href="/inorder/{{ inOrder._id }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
+                        <b>|</b>
+                        <a href="/inorder/delete/{{ inOrder._id }}"><i class="fa fa-fw fa-trash"></i> Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>

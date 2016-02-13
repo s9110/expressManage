@@ -1,3 +1,10 @@
+<style>
+    .margin-top {
+        margin-bottom: 0px !important;
+        margin-top: 5px;
+    }
+</style>
+
 <div class="container-fluid">
 
     <div class="row">
@@ -9,28 +16,29 @@
     </div>
 
     <div class="row" ng-hide="loading">
-        <div class="col-md-6 col-md-offset-3">
+        <div class="col-md-8 col-md-offset-2">
             <form>
 
-                <div class="form-group">
-                    <label for="lotNumber">Lot Number: </label>
-                    <input type="number" class="form-control" id="lotNumber" ng-model="order.lotNumber">
-                    <!-- <p class="form-control-static">{{ order.lotNumber }}</p> -->
-                </div>
+                <div class="row">
+                    <div class="form-group col-xs-6">
+                        <label for="lotNumber">Lot Number: </label>
+                        <p class="form-control-static" id="lotNumber"><b>{{ order.lotNumber }}</b></p>
+                    </div>
 
-                <div class="form-group">
-                    <label for="orderInDate">In Date: </label>
-                    <div class="input-group date">
-                        <input id="orderInDate" type="text" class="form-control" placeholder="DD/MM/YYYY" ng-model="order.inDate">
-                        <span class="input-group-addon">
+                    <div class="form-group col-xs-6">
+                        <label for="orderInDate">In Date: </label>
+                        <div class="input-group date">
+                            <input id="orderInDate" type="text" class="form-control post-success-disabled delete-mode-disabled" placeholder="DD/MM/YYYY" ng-model="order.inDate">
+                            <span class="input-group-addon">
                             <i class="fa fa-calendar-o"></i>
                         </span>
+                        </div>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="customerName">Customer Name: </label>
-                    <input id="customerName" type="text" class="form-control customerName-control" placeholder="Enter customer name here..." ng-model="order.customerName">
+                    <input id="customerName" type="text" class="form-control customerName-control post-success-disabled delete-mode-disabled" placeholder="Enter customer name here..." ng-model="order.customerName">
                 </div>
 
                 <div class="form-group">
@@ -39,29 +47,68 @@
                         <table class="table table-bordered table-hover table-striped table-responsive" ng-hide="loading">
                             <thead>
                                 <tr>
-                                    <th>Name</th>
+                                    <th>Product Name</th>
                                     <th>Rate Per Month</th>
                                     <th>Container Type</th>
                                     <th>Quantity</th>
                                     <th>Discount</th>
+                                    <th ng-hide="success">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>TEST</td>
-                                    <td>TEST</td>
-                                    <td>TEST</td>
-                                    <td>TEST</td>
-                                    <td>TEST</td>
-                                </tr>
-
-                                <tr>
-                                    <td colspan="5">
-                                        <div class="pull-right">
-                                            <button type="submit" class="btn btn-sm btn-primary" ng-click="addProduct();" ng-show="insert">Add More</button>
-                                        </div>
+                                <tr ng-repeat="orderProduct in order.orderProducts">
+                                    <td>
+                                        <p class="form-control-static">{{ orderProduct.name }}</p>
+                                    </td>
+                                    <td>
+                                        <p class="form-control-static">{{ orderProduct.ratePerMonth }}</p>
+                                    </td>
+                                    <td>
+                                        <p class="form-control-static">{{ orderProduct.containerType }}</p>
+                                    </td>
+                                    <td>
+                                        <p class="form-control-static">{{ orderProduct.quantity }}</p>
+                                    </td>
+                                    <td>
+                                        <p class="form-control-static">{{ orderProduct.discount }}</p>
+                                    </td>
+                                    <td ng-hide="success">
+                                        <button type="submit" class="fa fa-edit btn btn-xs btn-warning margin-top" ng-click="editOrderDetailRow($index);"> Edit</button>
+                                        <button type="submit" class="fa fa-trash btn btn-xs btn-danger margin-top" ng-click="removeOrderDetailRow($index);"> Remove</button>
                                     </td>
                                 </tr>
+
+                                <tr class="new-order-detail" ng-hide="success">
+                                    <td>
+                                        <select class="form-control" ng-model="rawOrderProduct.name" ng-hide="isEditRow" ng-change="getSelectedProductDetails();">
+                                            <option ng-repeat="productOption in products">
+                                                {{ productOption.name }}
+                                            </option>
+                                        </select>
+                                        <p class="form-control-static" ng-show="isEditRow">{{ product.name }}</p>
+                                    </td>
+
+                                    <td>
+                                        <p class="form-control-static">{{ product.ratePerMonth }}</p>
+                                    </td>
+
+                                    <td>
+                                        <p class="form-control-static">{{ product.containerType }}</p>
+                                    </td>
+
+                                    <td>
+                                        <input id="productQuantity" type="number" class="form-control" ng-model="product.quantity">
+                                    </td>
+
+                                    <td>
+                                        <input id="discount" type="number" class="form-control" ng-model="product.discount">
+                                    </td>
+
+                                    <td>
+                                        <button type="submit" class="btn btn-xs btn-primary margin-top" ng-click="addNewOrderDetailRow();">Add to Order</button>
+                                    </td>
+                                </tr>
+
                             </tbody>
                         </table>
                     </div>
@@ -69,9 +116,11 @@
 
                 <div class="pull-right">
                     <a class="btn btn-default" href="/viewinorders">Cancel</a>
-                    <button type="submit" class="btn btn-primary" ng-click="addProduct();" ng-show="insert">Add In Order</button>
-                    <button type="submit" class="btn btn-primary" ng-click="updateProduct();" ng-show="update">Update In Order</button>
-                    <button type="submit" class="btn btn-danger" ng-click="deleteProduct();" ng-show="delete">Delete In Order</button>
+                    <!-- ng-hide="success" -->
+                    <button type="submit" class="btn btn-primary" ng-click="addInOrder();" ng-show="insert && !success">Add In Order</button>
+                    <button type="submit" class="btn btn-primary" ng-click="updateInOrder();" ng-show="update && !success">Update In Order</button>
+                    <button type="submit" class="btn btn-danger" ng-click="deleteInOrder();" ng-show="delete">Delete In Order</button>
+                    <button type="submit" class="btn btn-primary" ng-show="(insert || update) && success">Generate Recipt</button>
                 </div>
 
             </form>

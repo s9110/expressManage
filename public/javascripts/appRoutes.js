@@ -4,13 +4,17 @@ angular.module('appRoutes', ['productModule'])
 
     $routeProvider
 
-    // home page
-        .when('/', {
+    //
+    // HOME PAGE
+    //
+    .when('/', {
         templateUrl: 'partials/dashboard.html',
         controller: 'ExpressManageInitCtrl'
     })
 
-    // Under-Construction
+    //
+    // UNDER-CONSTRUCTION
+    //
     .when('/underconstruction', {
         templateUrl: 'partials/underConstruction.html',
         controller: 'UnderConstructionCtrl'
@@ -82,10 +86,28 @@ angular.module('appRoutes', ['productModule'])
         controller: 'AddInOrderCtrl'
     })
 
-    // // View In Orders
-    // .when('/viewinorders', {
-    //     templateUrl: 'partials/viewInOrders.html'
-    // })
+    // Edit In Order
+    .when('/inorder/:id', {
+        templateUrl: 'partials/inOrders.html',
+        controller: 'EditInOrderCtrl'
+    })
+
+    // Delete In Order
+    .when('/inorder/delete/:id', {
+        templateUrl: 'partials/inOrders.html',
+        controller: 'DeleteInOrderCtrl'
+    })
+
+    // View In Orders
+    .when('/viewinorders', {
+        templateUrl: 'partials/listInOrders.html',
+        controller: 'GetInOrderCtrl'
+    })
+
+    // View details of In Order
+    .when('/inorder/detail/:id', {
+        templateUrl: 'partials/inOrders.html'
+    })
 
     // // Add Out Order
     // .when('/addoutorder', {
@@ -98,7 +120,9 @@ angular.module('appRoutes', ['productModule'])
     // })
 
 
-    // default redirection
+    //
+    // DEFAULT REDIRECTION
+    //
     .otherwise({
         redirectTo: '/underconstruction'
     });

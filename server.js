@@ -12,6 +12,8 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var products = require('./routes/products');
 var customers = require('./routes/customers');
+var inOrders = require('./routes/inOrders');
+var sequenceNumber = require('./routes/sequenceNumber');
 
 var app = express();
 
@@ -42,6 +44,8 @@ app.use('/', index);
 app.use('/users', users);
 app.use('/api/product', products);
 app.use('/api/customer', customers);
+app.use('/api/inorder', inOrders);
+app.use('/api/sequencenum', sequenceNumber);
 
 // To avoid 404 if hard refreshed from partial url
 app.all('*', function(req, res) {
